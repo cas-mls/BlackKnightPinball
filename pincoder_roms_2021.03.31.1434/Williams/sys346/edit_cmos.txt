@@ -1,0 +1,223 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+edit_cmos (Williams sys346)
+
+
+
+PURPOSE
+==============================================================================================
+
+I wrote this ROM to allow direct editing of any value stored in the 5101 chip (Also known as
+the CMOS chip).  All values shown on the display are in decimal. Running this ROM is optional
+and is included for education purposes. You will not need to run it in order to troubleshoot
+anything.
+
+You WILL NEED GOOD BATTERIES INSTALLED when running this test. Also, the coin door must be
+open for this to work.
+
+
+
+
+PROCEDURE
+==============================================================================================
+
+This ROM makes it easy to map out the data stored in the 5101 chip. You can quickly build a
+list of all non-zero values by booting this ROM with the coin door open and writing down the
+INDEX NUMBER (shown in the Player 3 display) and the associated VALUE (shown in the Player 4
+display). Set the AUTO_UPDN switch to UP and press the HIGH SCORE RESET button to advance to
+the next address with a non-zero value.
+
+
+    NOTE: This ROMs starting address is always the first non-zero VALUE from the beginning of
+    the chip.
+
+
+Try this for starters:
+
+    1) Run the clear_cmos ROM, so that when the stock ROM boots, it knows to initialize the
+    5101 with default values.
+
+    2) Run the Stock ROM, so the 5101 chip is initialized with the default values.
+
+    3) Run this ROM, so you can look at what the initial values are and/or change them if you
+    like.
+
+You can also change a few settings via the Stock ROM, play a game or two, and then run this
+ROM again, writing down the updated values. You may see patterns appear, or be able to
+identify which addresses affect game play etc.
+
+Here's a summary of the controls for using this ROM:
+
+    * Use the ADVANCE button on the coin door to increment or decrement (by one) the ADDRESS
+    based on the position of the AUTO_UPDN switch.
+
+    * Use the CREDIT button to increment or decrement the VALUE of the data stored at that
+    address based on the position of the AUTO_UPDN switch.
+
+    * Use the HIGH SCORE RESET button to jump up or down (based on position of the AUTO_UPDN
+    switch) to the next address that contains a non-zero value.
+
+
+
+ABOUT THE 5101 CHIP
+==============================================================================================
+
+The 5101 chip is located at address 256 and is 256 bytes long.  This means all of the 5101
+data is sequentially stored in addresses 256 through 511, inclusively.
+
+The 5101 is a 4 bit chip, and so the range of possible values for the data stored at any of
+its addresses is decimal 0 to 15.  Two addresses are needed (x and x+1) to store a single 8
+bit value.
+
+Some VALUEs in the 5101 are encoded as Binary Coded Decimal (BCD). BCD ranges from 0x00 -
+0x99. To store this in the 4-bit 5101 you set address X to the numerical value of the LEFT
+digit, and address X+1 to the numerical value of the RIGHT digit.
+
+
+
+
+WHAT THE DISPLAYS ARE SHOWING
+==============================================================================================
+
+
+    * P1 Display: Shows the ADDRESS that you are currently viewing/editing.
+
+    * P2 Display: Shows the HIGH BYTE of the ADDRESS.  This is also called the PAGE
+    NUMBER. The 5101 fits perfectly into PAGE 1, so this value is always 1.
+
+    * P3 Display: Shows the LOW BYTE of the ADDRESS.  This is an INDEX NUMBER into the current
+    PAGE. Since the 5101 starts exactly on a PAGE boundary, this number indicates how far you
+    are into the 5101 address space.  You may notice that P1 = (P2 x 256) + P3.  Sometimes
+    it's helpful to have an address shown in two different ways.
+
+    * P4 Display: Shows the VALUE of the data stored in the current ADDRESS.
+
+
+
+WHAT YOU CAN DO WITH THIS ROM
+==============================================================================================
+
+So what can you do with it?  Well, your game uses the data in some of those addresses to
+remember things, and/or alter game play. If you know what certain addresses are used for, and
+the possible VALUEs for the data in those locations, you can manipulate your game.
+
+For example, ADDRESS 395 and 396 (on system 6 in the least) hold the MAXIMIM_CREDITS
+value. The Default BCD value of 20 means that address 395 is set to 0x02, and address 396 is
+set to 0x00, like this:
+
+  | 395 = 0x02
+  | 396 = 0x00
+
+So if you want to put the game into FREE PLAY mode (MAXIMUM_CREDITS=00) just set 395 to 0x00,
+and leave 396 at 0x00.  Then replace this ROM with the stock GREEN2 ROM and turn on the
+machine.
+
+    NOTE: With the COIN DOOR CLOSED you will only be able to modify the first half of the 5101
+    (addresses 256-383). Open the coin door to modify the second half (384-511)
+
+
+
+
+EXPECTED RESULTS
+==============================================================================================
+
+You should be able to scroll through and view/modify VALUES stored in various ADDRESSES of
+the 5101 chip. This will affect game play. Since the meaning behind the values is largely
+undocumented it is only possible to know what the effects are by changing the values here and
+booting into game mode to see if you notice any differences.
+
+If you have the patience and the desire to use this ROM to map out locations, their possible
+values, and the effects they have on game play and you want those game values known to the
+rest of the universe then send me the information and I'll include it in the instructions for
+this ROM. Thanks! :)
+
+
+
+
+EXAMPLE
+==============================================================================================
+
+Let's use the information from the init_cmos ROM as an example. To create it, I had to map out
+the values of the 5101 chip using this ROM. I then created a file with the following contents:
+
+ROM_CMOS_TABLE_START:                  ; New   ; Default values for Gorgar
+IDX_127:                               .db 05,10 ; 05,10 <unknown>
+IDX_129_13_BACKUP_HS_TO_DATE:          .db 02,05 ; 05,00 - Zero removes high score tracking!
+IDX_131_14_REPLAY_SCORE_1:             .db 03,00 ; 03,00 - New: 300,000, default: 300,000
+IDX_133_15_REPLAY_SCORE_2:             .db 04,03 ; 04,03 - New: 430,000, default: 430,000
+IDX_135_16_REPLAY_SCORE_3:             .db 05,05 ; 05,50 - New: 550,000, default: 550,000
+IDX_137_17_REPLAY_SCORE_4:             .db 07,08 ; 00,00 - New: 780,000, default: no replay award
+IDX_139_18_MAXIMUM_CREDITS:            .db 00,00 ; 02,00 - 00 = Free Play
+IDX_141_19_PRICING_CONTROL:            .db 00,00 ; 00,05 - Use custom pricing
+IDX_143_20_LEFT_COIN_SLOT_MULT:        .db 00,03 ; 00,01 - 75 cents - just for fun!
+IDX_145_21_CENTER_COIN_SLOT_MULT:      .db 00,01 ; 00,04 - 25 cents
+IDX_147_22_RIGHT_COIN_SLOT_MULT:       .db 00,03 ; 00,01 - 75 cents - just for fun!
+IDX_149_23_COIN_UNITS_REQUIRED:        .db 00,03 ; 00,01 - One play: 75 cents
+IDX_151_24_COIN_UNITS_BONUS_POINT:     .db 00,06 ; 00,04 - Three plays: $1.50
+IDX_153_25_HIGH_SCORE_CREDITS:         .db 00,01 ; 00,03 - One free game for beating HS to Date
+
+IDX_155_26_MATCH:                      .db 00,01 ; 00,00* = ON
+                                                 ; 00,01  = OFF
+
+IDX_157_27_SPECIAL:                    .db 00,01 ; 00,00* = CREDIT
+                                                 ; 00,01  = EXTRA BALL
+                                                 ; 00,02  = POINTS
+
+IDX_159_28_SCORING_AWARDS_AT_REPLAY:   .db 00,01 ; 00,00* = CREDITS
+                                                 ; 00,01  = EXTRA BALL
+
+IDX_161_29_MAXIMUM_PLUMB_BOB_TILTS:    .db 00,03 ; 00,03 - Range: 01-09
+
+IDX_163_30_NUMBER_OF_BALLS:            .db 00,05 ; Must be "00,03" or "00,05" Default: 0,3
+
+IDX_165_31_OUTLANE_SPECIAL_CONTROL:    .db 00,00 ; 00,00  = Top and Bottom Jet Bumpers + GAR lit together
+                                                 ; 00,01* = Top and Bottom Jet Bumpers lit together
+                                                 ; 00,02  = All Features Lit Separately
+
+IDX_167_32_EJECT_HOLE_CONTROL:         .db 00,01 ; 00,00* = Lamps Restore + 10K not lit initially
+                                                 ; 00,01  = Lamps Restore + 10K lit initially
+                                                 ; 00,02  = Lamps Do Not Restore + 10K not lit initially
+                                                 ; 00,03  = Lamps Do Not Restore + 10K lit initially
+
+IDX_169_33_EXTRA_BALL_AND_1_4_LAMPS:   .db 00,01 ; 00,00* = Extra Ball Allowed + Lamps Spotted Randomly
+                                                 ; 00,01  = No Extra Ball + Lamps Spotted Randomly
+                                                 ; 00,02  = Extra Ball Allowed + Lamps Spotted in Sequence
+                                                 ; 00,03  = No Extra Ball + Lamps Spotted in Sequence
+        
+IDX_171_34_1_4_SPECIAL_TARGET_CONTROL: .db 00,01 ; 00,00* = Star Lamps Restore + Star 1 Not Lit Initially
+                                                 ; 00,01  = Star Lamps Restore + Star 1 Lit Initially
+                                                 ; 00,02  = Star Lamps Do Not Restore + Star 1 Not Lit Initially
+                                                 ; 00,03  = Star Lamps Do Not Restore + Star 1 Lit Initially
+
+IDX_173_35_HEARTBEAT_SOUND:            .db 00,01 ; 00,00  = OFF
+                                                 ; 00,01* = ON
+ROM_CMOS_TABLE_END:
+
+When I compile the init_cmos ROM it takes the information from this file and uses it to
+initialize the 5101 chip.
+
+Each line basically contains the following elments:
+
+    1) INDEX NUMBERS (IDX_NNN_SETTINGNAME:)
+
+    2) The "New" values (.db x,x)
+
+    3) The "stock" default values (; y,y)
+
+    4) Comments about what the value means.
+
+You might notice that the IDX_NNN numbers increment in twos. This is because the ".db x,x"
+contains two bytes.
+
+You might also notice that there are no "gaps" in the table. Even if the New values are zero
+they must be included because they are located between the table start and end.
+
+In addition, this ROM sets the VALUE at INDEX NUMBER 72 to "5". I don't know what this value
+means, but the stock Gorgar ROM does the same thing. To save ROM and documentation space it
+was better to hard code the ROM to make this change than include it in the table and have to
+fill with zeros to eliminate gaps in the table.
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

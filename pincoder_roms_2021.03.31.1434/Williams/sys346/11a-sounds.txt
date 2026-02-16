@@ -1,0 +1,142 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+11a-sounds (Williams sys346)
+
+
+
+PURPOSE
+==============================================================================================
+
+This ROM allows you to play all 31 sound possibilities on your pinball machine. If you are
+unable to play ALL sounds reliably, then check for loose wires, cracked solder traces, and
+faulty transistors on the driver board.
+
+
+
+PROCEDURE
+==============================================================================================
+
+When you power up this ROM the Player 1 display shows the Auto Fire setting (00 = off, 01 =
+Auto Fire). The CREDITS display shows how long the signals are held for the sound card to see
+them. The default of 15 (lowest duration) works reliably on my machine. The maximum is 80,
+though changing this setting probably wont make any difference.
+
+The number shown on the MATCH display is the most useful. It shows the sound number that will
+be sent to the sound card when you press and release the HIGH SCORE RESET button.
+
+Pressing and releasing any one of the three COIN switches (on the coin door) will toggle the
+Auto Fire mode.  This is useful when you want to trace the signals from PIA4 on the driver
+board through to the sound card without having to press the HIGH SCORE RESET button each time.
+
+This ROM starts out on sound number 31. In Binary 31 is 11111, therefore playing this sound
+should activate all five signalling wires simultaneously when a sound request is made.
+
+
+
+EXPECTED RESULTS
+==============================================================================================
+
+You should be able to activate all possible sounds on your sound card. If so, you can skip the
+11b-sounds test and move on to the next test.
+
+
+
+HOW TO DIAGNOSE SOUND PROBLEMS
+==============================================================================================
+
+
+Boot up this ROM, open the coin door, and press the HIGH SCORE RESET button. You should
+hear sound number 31 play. For Gorgar, which has a speech board, it is GORGARs voice saying
+"Gorgar".
+
+If you do not hear the correct sound, one or more of the five signals is not getting to the
+sound card. In my case I had a cracked solder joint on Q31 so the signal path from PIA4 PB0
+through to the sound card was incomplete. To diagnose each signal path, start at the correct
+pin on PIA4 and trace it with a logic probe through to the sound card. For example:
+
+  | PIA4    IC3             Q30           Q31         2J9       10J1
+  | ----    ---             ---           ---         ---       ----
+  | PB0 --> pin 10
+  |         pin  9 pulsing
+  |         pin  8 -------> Base
+  |                         Collector --> Base
+  |                                       Emitter --> pin 9 --> pin 1
+
+
+    NOTE: Connector 2J9 is located on the driver board. Connector 10J1 is located on the sound
+    card.
+
+Each time a sound is fired, the logic probe should blip low. If you have Auto Fire enabled,
+you may see more than one blip while a single sound is playing, that is okay. The sound card
+ignores the extra blips until it is ready for another sound.
+
+For games with five signalling wires to the sound card, you need to check pins PB0 - PB4 on
+PIA4
+
+
+
+ABOUT THE SOUNDS YOU WILL GET
+==============================================================================================
+
+Some games use exactly the same sound cards as others, so when using this ROM it is possible
+for you to hear sounds from OTHER games that you would not normally hear when playing your
+game.
+
+I have compiled a numbered list (decimal and binary) of sounds that GORGAR produces below:
+
+  |        PB
+  | NN   43210 Sound Name
+  | --   ----- ----------
+  | 01 - 00001 Tilt
+  | 02 - 00010 Wire Twang
+  | 03 - 00011 Short Deep Laser
+  | 04 - 00100 Dizzy
+  | 05 - 00101 Boing - Points
+  | 06 - 00110 Fast Saucer
+  | 07 - 00111 Echoing/Fading Laser
+  | 08 - 01000 Extremely Short Burp
+  | 09 - 01001 Deep Laser
+  | 10 - 01010 Alien Evaporation
+  | 11 - 01011 Short Stun Gun
+  | 12 - 01100 Short Raspberry
+  | 13 - 01101 ABC Combo
+  | 14 - 01110 Long Drain
+  | 15 - 01111 1-4 Targets
+  | 16 - 10000 Short Laser
+  | 17 - 10001 Sustained Space Ship 31 increments
+  | 18 - 10010 Sustained Heart Beat 30 increments, priority over space ship
+  | 19 - 10011 Sustained Cancel
+  | 20 - 10100 Bomb Fizzle
+  | 21 - 10101 Drop Targets / Spinner
+  | 22 - 10110 Failed ball Start (Spinner)
+  | 23 - 10111 2nd, 3rd, 4th player game started Manual Repeat
+  | 24 - 11000 "Gorgar Speaks"
+  | 25 - 11001 "You Beat Gorgar"
+  | 26 - 11010 "Me Gorgar Beat Me"
+  | 27 - 11011 "You Beat Me"
+  | 28 - 11100 "You Hurt Gorgar"
+  | 29 - 11101 "Me Hurt"
+  | 30 - 11110 "Me Got You"
+  | 31 - 11111 "Gorgar"
+
+Notice that 17 and 18 are "Sustained" sounds. This means you send them once and they keep
+playing until cancelled by sending a 19 (Sustained Cancel). The other cool thing to note about
+17 and 18 is that each time you fire that sound, it gets faster. There are 11 speeds for each,
+and the 12th time you fire that sound, it wraps to speed number 1. Again, send a 19 to the
+sound card to cancel.
+
+I just made up names for these sounds, but you get the idea. Use this ROM to play each one,
+and take note of which ones actually come out of the card. If they are incorrect, use the
+binary numbers in the list to map which signalling wires should be actively blipping low
+for the sound card. From there you can deduce which signals are not getting through. Check
+corresponding Transistors on the driver board and/or pins on PIA4
+
+Finally, If you are getting all five signals TO the sound card, but are still having problems,
+the problem is with the sound card itself. Since that card is its own beast, I'll need to
+write some test ROMs that can be placed directly on the sound card. But that is for another
+day!
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

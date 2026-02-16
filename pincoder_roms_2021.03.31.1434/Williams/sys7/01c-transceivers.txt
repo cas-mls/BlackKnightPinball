@@ -1,0 +1,38 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+01c-transceivers (Williams sys7)
+
+
+
+PURPOSE
+==============================================================================================
+
+This ROM is for testing the data bus transceivers on the MPU board.  It does not do any
+initialization on the CPU or PIAs and should only be run when the board is on the bench and
+not installed in the game.  It is really only useful for boards that DO NOT use the 6802 CPU
+chip (since the 6802 uses internal RAM).
+
+
+
+PROCEDURE
+==============================================================================================
+
+This ROM simply writes the following hexadecimal values to RAM address 0000 and does this
+forever in a loop:
+
+  | 0x00
+  | 0x55
+  | 0xff
+  | 0xaa
+
+EXPECTED RESULTS
+==============================================================================================
+
+To see the results of this test you will need an oscilloscope and/or a logic analyzer.
+
+More documentation on this test will follow in future releases of this software.
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

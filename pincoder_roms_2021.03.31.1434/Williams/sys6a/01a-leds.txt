@@ -1,0 +1,88 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+01a-leds (Williams sys6a)
+
+
+
+PURPOSE
+==============================================================================================
+
+Tests LEDs on motherboard.
+
+
+
+EXPECTED RESULTS
+==============================================================================================
+
+Top and bottom LEDs should alternate flashing.
+
+
+
+IF YOUR BOARD PASSES THIS TEST
+==============================================================================================
+
+It means the CPU is working and that it can read data from the socket where this test chip
+is installed, and that it can talk to PIA1 and IC2 enough to show you activity through the
+LEDs. Congratulations! You have a minimally running board.
+
+Before you move on to the next test "blanking", keep this test running and check TP4 with a
+logic probe. It should be held LOW with no pulsing. This means the BLANKING circuit is NOT
+allowing lights, displays or solenoids to operate, which is what is expected for this test. In
+the "blanking" test you should expect to see the opposite result (TP4 is held high with no
+pulsing).
+
+    NOTE: The General Illumination (GI) lights are not connected to the Blanking circuit and
+    therefore will illuminate during all of the pincoder tests. On some games the GI lights
+    are connected to a relay which is controlled by the driver board. You can test that relay
+    when you get to the solenoids test ROM.
+
+
+
+
+IF YOUR BOARD FAILS THIS TEST
+==============================================================================================
+
+Check the board for the following:
+
+    1) Check for pulses (alternating high/low signals) on IC1 pin 5 (VMA). This is important
+    because it shows the CPU is executing instructions.
+
+    2) You should also be seeing pulses on IC8 pins 14,13,3.
+
+    3) There should be pulses on IC18 Pin 6 (PA4) and pin 7 (PA5). If not PIA1 *could* be bad.
+
+    4) Check that IC18 pin 39 (PIA1-CA2) is high and that IC7 pin 10 is low. If not IC2 will
+    not light the LEDs.
+
+    5) Check that IC2 pin 15 is low enough to be considered a logic 0 and that SW2 is
+    open. Check that R19 is 4.7k and is connecting to ground on one side.
+
+
+
+IF YOU ARE STILL SEEING NO LED ACTIVITY
+==============================================================================================
+
+PIA1 could be bad or there may be one or more chips blocking the signals on the address bus
+and/or the data bus.
+
+Since PIA1 controls the LEDs, displays and switches, you need to run a test that:
+
+    * Does not use PIA1, and
+
+    * Does not require working displays or user input from switches.
+
+The test you are looking for is "solenoids".
+
+The "solenoids" test enables the flipper relay at startup, so you only need to power it on and
+check that the flipper relay is energized. Of course you can also press the flipper buttons
+and the flippers should do their thing. If you can do this then the CPU, address bus, and data
+bus are fine, and the problem is quite likely PIA1.
+
+If the CPU appears to be working but the "solenoids" test does not energize the relay then
+try the "bus" and "tranceivers" tests. Fix any problems you find with those and run this test
+again.
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

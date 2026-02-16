@@ -1,0 +1,47 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+03-cmos-IC19 (Williams sys6a)
+
+
+
+PURPOSE
+==============================================================================================
+
+This ROM tests the READ and WRITE capabilites of the following chip:
+
+    * Schematic name: IC19
+
+    * Address range: $0100 to $01FF
+
+    * Data bus mask: $0F
+
+
+
+PROCEDURE
+==============================================================================================
+
+While this test is running observe the LEDs on the MPU board. Test repeats once for each
+flash.
+
+    NOTE: You must have the coin door OPEN for this test to PASS.
+
+
+    NOTE: You do not need the batteries installed on the MPU board for this test to pass.
+
+You can gently wiggle the chip in its place while the test is running. If you get different
+results then you should check the solder connections on the chip socket and/or replace the
+socket.
+
+
+
+EXPECTED RESULTS
+==============================================================================================
+
+Positive: Top LED flashes: Chip is good.
+
+Negative: Bottom LED flashes. Replace chip.
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

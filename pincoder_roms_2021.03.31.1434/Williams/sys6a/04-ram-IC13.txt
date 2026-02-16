@@ -1,0 +1,64 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+04-ram-IC13 (Williams sys6a)
+
+
+
+PURPOSE
+==============================================================================================
+
+This ROM tests the READ and WRITE capabilites of the following chip:
+
+    * Schematic name: IC13
+
+    * Address range: $0000 to $007F
+
+    * Data bus mask: $FF
+
+
+    NOTE: If this test fails and you are running this test on a system 7 board that has been
+    correctly jumpered to run a system 3-6a board then keep in mind that the results from
+    these .bin files will still be valid however due to the design of the system 7 board this
+    test is unable to determine WHICH ram chip is actually faulty. In this case either replace
+    BOTH ram chips, or jumper the board as a system 7 and run the ram tests using the sys7
+    .bin files in order to correctly determine WHICH ram chip is faulty. You do not need to do
+    any of this if all of the ram tests pass.
+
+Depending on your installed processor and CPU board jumpers, this check will test different
+components.
+
+    * For Boards with 6802 processor (J1 Removed and R4 Installed): Tests INTERNAL RAM on 6802
+    CPU
+
+    * For Boards with 6808 processor (J1 Installed and R4 Removed): Tests IC13 RAM
+
+This is because 6802 CPUs have an internal 128 bytes of RAM, while 6808 CPUs do not.
+
+Therefore if you have a 6802 CPU and this test fails (but otherwise the 6802 is good) then you
+can keep using the CPU chip and install IC13 (if you happen to have one). In this case install
+J1 and remove R4.
+
+
+
+PROCEDURE
+==============================================================================================
+
+While this test is running observe the LEDs on the MPU board. Test repeats once for each
+flash.  You can gently wiggle the chip in its place while the test is running. If you get
+different results then you should check the solder connections on the chip socket and/or
+replace the socket.
+
+
+
+EXPECTED RESULTS
+==============================================================================================
+
+Positive: Top LED flashes. You can move on to the next test.
+
+Negative: Bottom LED flashes. One or more memory locations inside the chip is bad.
+See above to determine which chip to replace (6808 CPU or IC13 RAM).
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

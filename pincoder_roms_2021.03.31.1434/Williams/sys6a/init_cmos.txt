@@ -1,0 +1,121 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+init_cmos (Williams sys6a)
+
+
+
+PURPOSE
+==============================================================================================
+
+This ROM writes modified Gorgar (System 6) settings to the 5101 chip (also known as the CMOS
+chip).  Some of these settings may be specific to GORGAR and may not have the desired effect
+on other games.
+
+You can see what changes are made by comparing the "New" values with the Default values in the
+ADDENDUM section.
+
+You may be wondering what the difference is between "clear_cmos" and "init_cmos". They are
+quite different:
+
+    1) clear_cmos sets ALL the values in the 5101 chip to $0F, which causes the Williams ROM
+    to set its factory default values on the first boot. This is essentially a factory reset.
+
+    2) init_cmos sets ALL the values in the 5101 chip to zero and then goes back and fills in
+    some non-zero values (effectively setting defaults so you dont have to boot the game with
+    the door open twice).
+
+So you can try this ROM a non Gorgar game but it may not boot successfully or perhaps even
+play properly. I just wrote it so I could quickly boot back into the game without having to
+power on twice.
+
+If you're wanting to get back into game mode your safest bet is to run clear_cmos and then
+boot the Williams ROM twice.
+
+
+
+PROCEDURE
+==============================================================================================
+
+Ensure the coin door is open and power up this ROM. Wait a few seconds and power down.
+
+
+
+EXPECTED RESULTS
+==============================================================================================
+
+After running this ROM you can re-insert the stock ROM. When you then power up the game it
+will jump straight into attract mode, with the updated defaults.
+
+If you want to clear out the updated defaults and go back to the stock defaults, simply run
+the clear_cmos ROM and then the stock ROM as usual.
+
+
+
+ADDENDUM
+==============================================================================================
+
+This ROM has only been tested in a Gorgar machine. In order for the it to work on a different
+game I'd need someone to send the me default settings for that game. To do this see the
+instructions on how to write down all of the non-zero values shown in the edit_cmos test.
+
+Here is what this ROM uses to initialize the 5101 chip:
+
+ROM_CMOS_TABLE_START:                  ; New   ; Default values for Gorgar
+IDX_127:                               .db 05,10 ; 05,10 <unknown>
+IDX_129_13_BACKUP_HS_TO_DATE:          .db 02,05 ; 05,00 - Zero removes high score tracking!
+IDX_131_14_REPLAY_SCORE_1:             .db 03,00 ; 03,00 - New: 300,000, default: 300,000
+IDX_133_15_REPLAY_SCORE_2:             .db 04,03 ; 04,03 - New: 430,000, default: 430,000
+IDX_135_16_REPLAY_SCORE_3:             .db 05,05 ; 05,50 - New: 550,000, default: 550,000
+IDX_137_17_REPLAY_SCORE_4:             .db 07,08 ; 00,00 - New: 780,000, default: no replay award
+IDX_139_18_MAXIMUM_CREDITS:            .db 00,00 ; 02,00 - 00 = Free Play
+IDX_141_19_PRICING_CONTROL:            .db 00,00 ; 00,05 - Use custom pricing
+IDX_143_20_LEFT_COIN_SLOT_MULT:        .db 00,03 ; 00,01 - 75 cents - just for fun!
+IDX_145_21_CENTER_COIN_SLOT_MULT:      .db 00,01 ; 00,04 - 25 cents
+IDX_147_22_RIGHT_COIN_SLOT_MULT:       .db 00,03 ; 00,01 - 75 cents - just for fun!
+IDX_149_23_COIN_UNITS_REQUIRED:        .db 00,03 ; 00,01 - One play: 75 cents
+IDX_151_24_COIN_UNITS_BONUS_POINT:     .db 00,06 ; 00,04 - Three plays: $1.50
+IDX_153_25_HIGH_SCORE_CREDITS:         .db 00,01 ; 00,03 - One free game for beating HS to Date
+
+IDX_155_26_MATCH:                      .db 00,01 ; 00,00* = ON
+                                                 ; 00,01  = OFF
+
+IDX_157_27_SPECIAL:                    .db 00,01 ; 00,00* = CREDIT
+                                                 ; 00,01  = EXTRA BALL
+                                                 ; 00,02  = POINTS
+
+IDX_159_28_SCORING_AWARDS_AT_REPLAY:   .db 00,01 ; 00,00* = CREDITS
+                                                 ; 00,01  = EXTRA BALL
+
+IDX_161_29_MAXIMUM_PLUMB_BOB_TILTS:    .db 00,03 ; 00,03 - Range: 01-09
+
+IDX_163_30_NUMBER_OF_BALLS:            .db 00,05 ; Must be "00,03" or "00,05" Default: 0,3
+
+IDX_165_31_OUTLANE_SPECIAL_CONTROL:    .db 00,00 ; 00,00  = Top and Bottom Jet Bumpers + GAR lit together
+                                                 ; 00,01* = Top and Bottom Jet Bumpers lit together
+                                                 ; 00,02  = All Features Lit Separately
+
+IDX_167_32_EJECT_HOLE_CONTROL:         .db 00,01 ; 00,00* = Lamps Restore + 10K not lit initially
+                                                 ; 00,01  = Lamps Restore + 10K lit initially
+                                                 ; 00,02  = Lamps Do Not Restore + 10K not lit initially
+                                                 ; 00,03  = Lamps Do Not Restore + 10K lit initially
+
+IDX_169_33_EXTRA_BALL_AND_1_4_LAMPS:   .db 00,01 ; 00,00* = Extra Ball Allowed + Lamps Spotted Randomly
+                                                 ; 00,01  = No Extra Ball + Lamps Spotted Randomly
+                                                 ; 00,02  = Extra Ball Allowed + Lamps Spotted in Sequence
+                                                 ; 00,03  = No Extra Ball + Lamps Spotted in Sequence
+        
+IDX_171_34_1_4_SPECIAL_TARGET_CONTROL: .db 00,01 ; 00,00* = Star Lamps Restore + Star 1 Not Lit Initially
+                                                 ; 00,01  = Star Lamps Restore + Star 1 Lit Initially
+                                                 ; 00,02  = Star Lamps Do Not Restore + Star 1 Not Lit Initially
+                                                 ; 00,03  = Star Lamps Do Not Restore + Star 1 Lit Initially
+
+IDX_173_35_HEARTBEAT_SOUND:            .db 00,01 ; 00,00  = OFF
+                                                 ; 00,01* = ON
+ROM_CMOS_TABLE_END:
+
+For an explanation of what this means see the documentation for the "edit_cmos" ROM.
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

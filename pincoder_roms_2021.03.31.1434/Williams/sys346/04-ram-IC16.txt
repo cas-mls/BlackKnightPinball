@@ -1,0 +1,51 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+04-ram-IC16 (Williams sys346)
+
+
+
+PURPOSE
+==============================================================================================
+
+This ROM tests the READ and WRITE capabilites of the following chip:
+
+    * Schematic name: IC16
+
+    * Address range: $0080 to $00FF
+
+    * Data bus mask: $FF
+
+
+    NOTE: If this test fails and you are running this test on a system 7 board that has been
+    correctly jumpered to run a system 3-6a board then keep in mind that the results from
+    these .bin files will still be valid however due to the design of the system 7 board this
+    test is unable to determine WHICH ram chip is actually faulty. In this case either replace
+    BOTH ram chips, or jumper the board as a system 7 and run the ram tests using the sys7
+    .bin files in order to correctly determine WHICH ram chip is faulty. You do not need to do
+    any of this if all of the ram tests pass.
+
+
+
+
+PROCEDURE
+==============================================================================================
+
+While this test is running observe the LEDs on the MPU board. Test repeats once for each
+flash.  You can gently wiggle the chip in its place while the test is running. If you get
+different results then you should check the solder connections on the chip socket and/or
+replace the socket.
+
+
+
+EXPECTED RESULTS
+==============================================================================================
+
+Positive: Top LED flashes. You can move on to the next test.
+
+Negative: Bottom LED flashes. One or more memory locations inside the chip is bad.
+See above to determine which chip to replace (6808 CPU or IC13 RAM).
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

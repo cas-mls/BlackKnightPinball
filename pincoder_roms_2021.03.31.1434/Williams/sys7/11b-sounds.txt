@@ -1,0 +1,55 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+11b-sounds (Williams sys7)
+
+
+
+PURPOSE
+==============================================================================================
+
+This ROM is similar to the first "sounds" test ROM except that it requires no input from the
+switches and so can also be used on the bench. You do not need to run this test if you've
+successfully completed the first sounds test.
+
+
+
+PROCEDURE
+==============================================================================================
+
+When you power up this ROM the DISPLAYS (if connected) will show all 8's for a moment while
+the sound card initializes and warms up. Afterward the displays will go blank for a moment or
+two and then the sounds will start playing.
+
+Player 1 display shows the current sound repeat number. Each sound will be played 3 times in 3
+second intervals.
+
+The CREDITS display shows how long the signals are held for the sound card to see them. The
+default of 15 (lowest duration) works reliably on my machine and in this test cannot be
+changed.
+
+The number shown on the MATCH display is the most useful. It shows the sound number that will
+be sent to the sound card on every third second.
+
+This ROM starts out on sound number 1. Interestingly enough, on Hyperball this means silence
+gets played first.
+
+
+
+EXPECTED RESULTS
+==============================================================================================
+
+All possible sounds will be played three times each on your sound card before moving on to the
+next sound. Not all sound numbers are assigned to a sound, and if you have an attached speech
+card, you should also hear speech through this test.
+
+
+
+HOW TO DIAGNOSE SOUND PROBLEMS
+==============================================================================================
+
+See the notes on the first sound test ROM on how to diagnose problems with your sound card.
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

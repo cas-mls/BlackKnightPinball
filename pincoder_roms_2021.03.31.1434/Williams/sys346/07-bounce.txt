@@ -1,0 +1,74 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+07-bounce (Williams sys346)
+
+
+
+PURPOSE
+==============================================================================================
+
+This ROM allows you to test individual switches for "double bounce".
+
+Double bounce happens when the CPU registers more than one switch activation for a single
+intended activation. It can occur with dirty or worn switch contacts, and also from cold
+solder joints or loose wires, such as at the connectors.
+
+In my case, pressing the CREDIT button on my Gorgar would sometimes start a two or three
+player game when I had pushed it only once.
+
+
+
+PROCEDURE
+==============================================================================================
+
+When you start this test "03" will show on the left side of the player one display. This means
+that switch number 3 (CREDIT BUTTON) in the switch matrix is being monitored.
+
+Each time you activate the corresponding switch the displayed switch number will move one
+space (two digits) to the right, possibly continuing all the way down to the MATCH display.
+
+So, if the displayed switch number slides across more than one "space" then you know a double
+bounce has occurred for that switch.
+
+
+    * Clean the contacts (DO NOT SAND THEM DOWN) and ensure they are adjusted properly, and
+
+    * Check the wiring for possible shorts or breaks.
+
+    * Check for loose wires or weak contacts inside the connectors of 2J2 and 2J3.
+
+If the switch is beyond repair, replace it.  If you still have problems with the switch
+registering properly to the CPU check the driver board transistors and circuits associated
+with that switch.
+
+To advance the test to the next switch number, press the DIAG button on the MPU board.
+
+
+
+
+EXPECTED RESULTS
+==============================================================================================
+
+This test works for the following switches:
+
+    * Switches in the Switch Matrix (Numbered 01-64). See your game's documentation to
+    identify which switches are used for your game.
+
+    * DIP switches (Numbered 65-80: Top Bank Top switch, to Bottom Bank Bottom switch) on CPU
+    board.
+
+    * Coin door switches: ADVANCE (Number 81), AUTO_UPDN (Number 82)
+
+
+    NOTE: The remainging switches in the game are directly tied to other components and are
+    not wired to the MPU board and thus cannot be diagnosed with this test.
+
+You may notice the LEDs on the mpu board have a little glow to them while this test is
+running. It is a result of the way the LEDs and the DIP switches are wired together on the
+board circuitry.  There is also a lot more flicker on the displays for this test.  It does not
+mean there is anything wrong with your board.
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

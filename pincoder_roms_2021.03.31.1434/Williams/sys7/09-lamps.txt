@@ -1,0 +1,246 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+09-lamps (Williams sys7)
+
+
+
+PURPOSE
+==============================================================================================
+
+Test lamps within the lamp matrix (01-64) using five different states (shown on CREDITS
+display):
+
+    * 04: Bulb on steady
+
+    * 03: Blink very fast
+
+    * 02: Blink fast
+
+    * 01: Blink slow
+
+    * 00: Bulb off
+
+
+
+PROCEDURE
+==============================================================================================
+
+This test starts out in state 04 (shown on CREDITS display, 04=lamps on steady) and lamp
+number 00 (shown on MATCH display, 00=ALL lamps in the matrix).
+
+    NOTE: AS WITH ALL OTHER TEST ROMS THAT USE THE BLANKING SIGNAL, YOUR MACHINE MUST PASS THE
+    BLANKING TEST BEFORE YOU RUN THIS TEST.
+
+
+    NOTE: This ROM has been built with the "lamps_delay" feature. In this case, the player
+    1 display shows the default "DELAY" value of zero. The lamps_delay feature is described
+    at the end of this document. For now you can ignore the DELAY value and get on with the
+    standard lamps testing.
+
+
+To cycle the lamp state through the 5 states press the HIGH_SCORE_RESET button on the coin
+door. Note that due to the way the ROM was written some lamps may flash brightly for a
+fraction of a second as you cycle through these states. This is normal and is due to how the
+ROM was written. It does not mean there is anything wrong with your board.
+
+To change the lamp number press the ADVANCE button. Depending on the position of the AUTO_UPDN
+switch the lamp number will increase or decrease. Consult your games documentation to find the
+bulb numbers in the lamp matrix.
+
+When in any of the blink modes, check that ALL bulbs are blinking. On "weaker" driver boards
+you may find that some bulbs dont actually start to blink for 5 or 10 seconds, or you might
+find that they *only* blink for 5-10 seconds and then stop. In these cases, press the
+HIGH_SCORE_RESET button to slow down the blink rate. You might find a change in behaviour with
+those bulbs. Cycle through each of the 5 lamp states and see if you notice any patterns that
+might help you narrow down to one or more transistors or logic chips on the driver board.
+
+Your driver board should be able to consistenly blink all bulbs rapidly for as long as you
+want.
+
+If you can't find anything relevent, you can proceed to test the individual bulbs in the same
+mannor. Press the ADVANCE button to start at bulb #01 in the matrix.
+
+Test each bulb while observing the remaining bulbs in the matrix. When testing individual
+bulbs, only one bulb should be lit at at time.
+
+
+
+
+EXPECTED RESULTS
+==============================================================================================
+
+If you get more than one bulb lit at a time, you may have a SHORTED TRANSISTOR on the driver
+board. Look at which bulbs are lighting together and compare to the LAMP MATRIX in the
+documentation for your machine.  The bulbs will likely be all in the same row or column.
+
+The same can be said for bulbs that DO NOT light. Make note of the unlit bulbs and compare
+to the LAMP matrix. If they are all in a single row or column then you may have an OPEN
+TRANSISTOR on the driver board.
+
+In addition, Each of the lamps' diodes can have an effect on which bulbs end up being lit so
+they should be checked too. Defective "shorted" diodes may cause multiple bulbs to light when
+they should not. Defective "open" diodes will prevent the associated bulb from lighting.
+
+Replace any OPEN/SHORTED transistors and diodes and repeat the test.
+
+    NOTE: For games with MAGNET LAMPS: This ROM does NOT test the MAGNET LAMPS as they are
+    wired in as solenoids. Use the "solenoids" ROM to test them.
+
+If everything up to this point in this test looks good, you can move on to the next ROM.
+
+
+
+LAMP DELAYING
+==============================================================================================
+
+
+If you are seeing "intermittently" stuck bulbs (sometimes always on or sometimes never on), or
+slow-to-turn-on/slow-to-turn-off bulbs, this DELAY mode may help you find out why.
+
+The theory is that weaker components on the driver board may take longer to turn on, or
+off. The DELAY part of this test MAY reveal differences in bulb behaviour.
+
+The point of all this is to allow more time for the LAMPS PIA, the lamps pre-driver and driver
+transistors, and the lamps themselves to energize. Ideally, these components should respond
+without any intended delay at all. If changing the delay here to anything other than zero
+causes a lamp behaviour to change, then one or more of the components associated with that
+lamp is not quite up to par, and should be replaced.
+
+During this mode of testing you can still set "state" and "lamp number" as outlined in the
+standard proceedure above. This will give you additional flexibility you might need to
+troubleshoot.
+
+
+!!!
+!!!   WARNING: USE THIS DELAY MODE WITH CAUTION AS YOU CAN EASILY START BURNING OUT BULBS
+!!!   AND/OR OVERHEATING THE LAMP MATRIX RESISTORS (R149 thru R156)- EVEN IF YOU HAVE LEDS
+!!!   INSTALLED IN PLACE OF REGULAR BULBS. THIS MAY ALSO BE TRUE FOR ANY THIRD PARTY LAMP
+!!!   MATRIX TESTING EQUIPMENT.
+!!!
+
+
+!!!
+!!!   WARNING: PLEASE READ AND UNDERSTAND EVERTHING IN THIS GUIDE BEFORE USING THIS FEATURE.
+!!!
+
+For additional clarity on the results you will see, and when you are ready to begin you
+should:
+
+    1) Clip one end of a single wire onto TP4 on the MPU board (blanking signal), and clip the
+    other end to the tip of your logic probe.
+
+    2) Attach the GND and 5V wires of your logic probe to the MPU Ground and 5v.
+
+    3) If your probe has a "mem/pulse" switch set it to "pulse".
+
+    4) Put down your logic probe: make sure you rest it in a place where it will not get in
+    the way, or accidentially touch other parts, and that you can still see the LEDs on it.
+
+Before you begin here are some important points to remember:
+
+    * At any give point in time, only ONE column of bulbs in the matrix should have power
+    going to it. Even if all of the lamps in the entire matrix are to be lit STEADY.
+
+    * For any given column of bulbs in the matrix, the rows that will light are determined by
+    the Port A pins of the LAMPS PIA. THESE VALUES ARE INVERTED, meaning a 0 (low) bit will
+    light a bulb, and a 1 (high) will turn it off.
+
+Now back to the DELAY value and what it means. Simply put, it is an extra delay that happens
+(in this ROM only) right after the row and column output signals are updated on the LAMPS
+PIA. The higher the DELAY value, the longer the delay. This value applies to each column
+strobe cycle and it affects all bulbs regardless of the state (CREDITS display) and lamp
+number (MATCH display).
+
+TWO EXTREMELY IMPORTANT THINGS TO KNOW ABOUT USING THIS DELAY VALUE:
+
+    * For delay values <= 255 (ALL bottom bank DIP switches set to zero) the displays are kept
+    updated, and will flicker more for longer delays. At some point, the delay will "outgrow"
+    the timer in the blanking circuit. When this happens, the displays and the lamps will go
+    dark and your logic probe will read LOW. As the test is still running, only moments later
+    the displays will be refreshed and the blanking signal will go HIGH again. Your logic
+    probe will now show HIGH, and the displays and lamps will again light as they should.
+
+    * For delay values > 255 (ANY bottom bank DIP switch set to one) the displays will NO
+    LONGER BE UPDATED (They will not be refreshed fast enough anyway), so they will go
+    out. Instead, the blanking signal will be kept alive ON PURPOSE NO MATTER THE DELAY YOU
+    HAVE CHOSEN.
+
+That last point is something worth keeping in mind!
+
+Essentially, by setting a delay > 255 you are asking this ROM to keep steady power to a column
+of bulbs longer than the hardware was designed for. You're also asking it to "trick" the
+protective blanking circuit into allowing the bulbs to stay lit. Remember that they are 6.3
+volt bulbs and the power to them is (and always has been) 18 volts. This is perfectly fine
+under normal conditions as the 18 volts only goes to a bulb for a fraction of a second - just
+enough to give it a good glow - but this ROM in this MODE is not exercising normal conditions.
+
+To put it another way: Regular blanking signal is enabled when ALL of the BOTTOM DIPs are
+zero.  When ANY of the BOTTOM DIPs are set to one, the displays go out, and the blanking
+signal is kept alive, NO MATTER HOW LONG YOU HAVE SET THE DELAY. THIS IS WHERE YOU MIGHT START
+BURNING OUT BULBS.
+
+If you want to know how long the blanking circuit will actually allow bulbs to be lit for,
+using various values <= 255 should be sufficient (as tested in my Gorgar). Setting the value
+to 255 (all TOP DIPS set to one, all BOTTOM DIPS set to zero) should be enough time to see the
+delay happening, and also see when the blanking circuit kicks in (goes low) and shuts off the
+bulbs before this ROM does). When the DELAY time runs out you will see the blanking signal go
+HIGH again, and the bulbs will come on again. This will happen over and over. It is okay to
+allow this to happen in this ROM.
+
+You will also notice that the point at which bulbs start to become much brighter is at the 256
+mark. The delay is only one count longer that 255, but since the displays are no longer being
+updated, more time is spent refreshing bulbs, hence the jump in brightness.
+
+Now, if you understand everything up to this point and you accept the responsibility and care
+that comes with using this test, you can proceed with the setting up a delay and observing the
+result.
+
+To set a DELAY value (Min: 1, Max: 65535):
+
+    1) Set the DIP switches on the MPU board to the binary value of the DELAY you would like
+    to latch. The DELAY value's Least Significant Bit (LSB) is the top switch on the top
+    bank of DIP switches, the Most Significant Bit (MSB) is the bottom switch of the bottom
+    bank. You should start with the lowest DELAY value (1), look for changes in behaviour, and
+    then make the DELAY longer. Keep in mind what happens when you use a delay value > 255. On
+    my system 6 board, the DIP switch is set to 1 when it is moved toward the numbers written
+    on the switch. This is likely true for all DIP switches.
+
+    2) Press the SW2/ENTER button to latch that value. Without pressing this switch the
+    default value of zero will be latched, thereby shutting off the DELAY mode altogether.
+
+    3) Press the DIAG switch to update the running test. Again, if you set any DIPs to 1 but
+    do not press the SW2/ENTER button afterward, the latched DELAY value will be zero.
+
+
+    NOTE: If you are unfamiliar with binary values, you can still utilize this test. Start
+    by setting the top switch of the top bank to 1 and work your way down the bank. The more
+    switches you have set to 1 as you get to the bottom, the longer the delay will be. See the
+    player 1 display for the current DELAY value. AGAIN, BE CAREFUL.  IF YOU ARE UNCERTAIN YOU
+    SHOULD KEEP THE BOTTOM DIP SWITCHES TO ZERO.
+
+
+Once you are familiar with operating the DELAY mode, you can then start looking for changes
+in bulb behaviour with your game. One of the first things you will notice is that the bulbs
+get brigher than usual with longer delays. Also the digits on the displays start to fade, some
+more than others.
+
+As the DELAY feature is new to this test ROM, I am interested in hearing feedback from you
+about the discoveries you make with this test. You can message me privately (@pincoder on
+pinside.com) or leave a comment on this pinside thread:
+
+    <__PINCODER_SUPPORT_URL__>
+
+My game is working 100% and so did not reveal any problem circuitry. However, it was nice
+to see how things changed under the different delays. In all reality, a delay of one will
+not be too much of a noticable difference over a delay of zero. Bigger numbers will be more
+noticable. In writing this ROM of course I did blow a few bulbs. Do not run the bulbs bright
+for too long. Even if they dont blow, their life will be significantly reduced. Keep your
+finger on the DIAG switch and press it immediately if you think you need to get out of DELAY
+mode.
+
+Enjoy!
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

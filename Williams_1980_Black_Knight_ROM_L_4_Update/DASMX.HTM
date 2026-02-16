@@ -1,0 +1,644 @@
+<HTML>
+<HEAD>
+<TITLE>DASMx - A microprocessor opcode disassembler</TITLE>
+</HEAD>
+<BODY>
+<H1>DASMx - A microprocessor opcode disassembler</H1>
+<H1><FONT SIZE=5>&copy; Copyright 1996, 1997 Conquest Consultants</FONT>
+</H1>
+<H1><I><FONT SIZE=5>Version 1.10, 16<I><SUP>th</SUP> July 1997</I></FONT></I>
+</H1>
+<H1>Introduction</H1>
+<P>
+<B>DASMx</B> is a disassembler for a range of common 8-bit microprocessors.
+The following main processor families are currently supported:
+<UL>
+<LI>Motorola 6800 family and single chip variants;
+<LI>Motorola 6809;
+<LI>MOS Technology/Rockwell 6502;
+<LI>Zilog Z80 (and hence Intel 8080 with Zilog mnemonics);
+<LI>Intel 8048 family.
+</UL>
+<P>
+The disassembler takes as input a binary code/data image file
+(typically a ROM image) and generates either an assembler source
+file or a listing file. <B>DASMx</B> is a <I>two pass</I> disassembler
+with automatic symbol generation. <B>DASMx</B> can optionally
+use a symbol file containing user defined symbols and specifications
+of data areas within the source image.
+<P>
+<B>DASMx</B> includes a powerful feature called <I>code threading</I>.
+Using known code entry points (e.g. reset and interrupt vectors)
+and by performing partial emulation of the processor, the disassembler
+is able to follow known code paths within a source binary image.
+<P>
+Use of code threading, together with the two pass operation and
+symbol table management permits readable assembly code output
+from source images that contain large amounts of data (which tend
+to confuse most disassemblers).
+<P>
+<B>DASMx</B> is copyright software. This version (1.10) may be
+distributed and used freely provided that all files are included
+in the distribution, no files are modified (including the distribution
+zip file) and no charge is made beyond that reasonable to cover
+copying (say 5 UK pounds).
+<P>
+<I>Historical note</I>: <B>DASMx</B> version 1.10 supersedes the
+Motorola 680x disassembler, <B>dasm6800</B> (last released as
+version 1.00 on 25<SUP>th</SUP> January 1997). The change of name
+reflects the wide range of processors that are now covered.
+<P>
+Summarising, the key features of <B>DASMx</B> are:
+<UL>
+<LI>Disassembly of object code images for the following microprocessors:
+<UL>
+<LI>Motorola 6800/6802/6808;
+<LI>Motorola 6801/6803;
+<LI>Motorola 6809;
+<LI>MOS Technology/Rockwell 6502;
+<LI>Zilog Z80;
+<LI>Intel 8080 (resulting in Zilog mnemonics);
+<LI>Intel 8048.
+</UL>
+<LI>Two pass operation, with automatic symbol generation for jump,
+call and data target addresses;
+<LI>Code threading (used to automatically differentiate code from
+data);
+<LI>Control file containing user defined symbols, specifications
+of data areas and code entry points;
+<LI>Generation of full listing or assembler output file;
+<LI>Runs from the command line under Windows 95 or Windows NT.
+</UL>
+<H1>Version history</H1>
+<P>
+<TABLE BORDERCOLOR=#000000 BORDER=1>
+<TR><TD WIDTH=83><CENTER><I><B>Version</B></I></CENTER></TD><TD WIDTH=142><CENTER><I><B>Date</B></I></CENTER>
+</TD><TD WIDTH=472><I><B>Comments</B></I></TD></TR>
+<TR><TD WIDTH=83><CENTER>0.90</CENTER></TD><TD WIDTH=142><CENTER>28<SUP>th</SUP> July 1996</CENTER>
+</TD><TD WIDTH=472>First public release (as <B>dasm6800</B>): with support for 6800/6802/6808 only.
+</TD></TR>
+<TR><TD WIDTH=83><CENTER>1.00</CENTER></TD><TD WIDTH=142><CENTER>25<SUP>th</SUP> January 1997</CENTER>
+</TD><TD WIDTH=472>Second release (as <B>dasm6800</B>): 6801/6803 and 6809 support added; other improvements in performance and listing output.
+</TD></TR>
+<TR><TD WIDTH=83><CENTER>1.10</CENTER></TD><TD WIDTH=142><CENTER>16<SUP>th</SUP> July 1997</CENTER>
+</TD><TD WIDTH=472>Third release (now renamed <B>DASMx</B>): 6502, Z80 and 8048 processor support added; minor improvements and bug fixes.
+</TD></TR>
+</TABLE>
+<P>
+The changes from version 1.00 are:
+<UL>
+<LI>All references to &quot;dasm6800&quot; replaced by &quot;DASMx&quot;;
+<LI>Disassembly of 6502 added;
+<LI>Disassembly of Z80 added;
+<LI>Disassembly of 8048 added;
+<LI>Minor bug fix for code threading of 6801/6803 direct branch
+instructions;
+<LI>Minor changes to listing output;
+<LI>Bug fixes and other minor improvements.
+</UL>
+<P>
+The changes between versions 0.90 and 1.00 were:
+<UL>
+<LI>Disassembly of 6801/6803 added;
+<LI>Disassembly of 6809 added;
+<LI>Define byte pseudo-op now generates full listing;
+<LI>Two new commands supported in symbol file: <TT><FONT FACE="Courier">cpu</FONT></TT>
+(to select processor type) and <TT><FONT FACE="Courier">addrtab</FONT></TT>
+(to define a table of addresses, each of which points to data);
+<LI>New command line switch to select processor type;
+<LI>Performance improvement to pass 1;
+<LI>Minor changes to listing output;
+<LI>Bug fixes and other minor improvements.
+</UL>
+<H1>Copyright</H1>
+<P>
+<B>DASMx</B> and all associated documentation is copyright by
+Conquest Consultants.
+<H1>Disclaimer</H1>
+<P>
+<B>DASMx</B> comes without any express or implied warranty. You
+use this software at your own risk. Conquest Consultants have
+no obligation to support or upgrade this software. Conquest Consultants
+cannot be held responsible for any act of copyright infringement
+or other violation of applicable law that results from use of
+this disassembler software.
+<H1>Distribution</H1>
+<P>
+<B>DASMx</B> is copyright software. This version (1.10) may be
+distributed and used freely provided that all files are included
+in the distribution, no files (including the distribution zip
+file) are modified and no charge is made beyond that reasonable
+to cover copying (say 5 UK pounds). Conquest Consultants reserve
+the right to alter the free distribution and use terms for any
+future versions or derivatives of <B>DASMx</B> that may be produced.
+<P>
+<B>DASMx</B> version 1.10 is distributed as file <B>dasmx110.zip</B>
+in the /msdos/disasm section of the Simtel archive. Provided that
+the above distribution terms are adhered to, this file may be
+freely copied to and mirrored at other ftp and WWW sites.
+<H1>Operation</H1>
+<P>
+Before describing the operation of <B>DASMx</B> in detail, here
+is an overview of how the disassembler will be typically used
+in practice.
+<P>
+First, you must obtain a file containing a binary image of the
+code/data that you wish to disassemble. Typically, this will be
+from one or more ROMs or EPROMs that have been read using a PROM
+programmer. Some PROM programmers output data in a form of ASCII
+hexadecimal format (Intel and Motorola are two common formats).
+If that is the case, then you must use a conversion utility to
+generate a raw binary image. A good check that you have a correct
+binary image of a complete ROM is that the file length (shown
+by a DIR command) will be a power of two and will correspond to
+the length of the ROM. For example, the file size of a complete
+image of a 27256 EPROM will be 32,768 bytes.
+<P>
+Assuming at this stage that you do not know which areas of the
+binary image are code and which are data, it is sensible to use
+the code threading feature. For code threading to work, you must
+provide at least one code entry point. This requires <TT><FONT FACE="Courier">code</FONT></TT>,
+<TT><FONT FACE="Courier">vector</FONT></TT> or <TT><FONT FACE="Courier">vectab</FONT></TT>
+entries in a symbol file. For example, if you are disassembling
+a ROM image from the uppermost region of the 6800 microprocessor
+address space, then four <TT><FONT FACE="Courier">vector</FONT></TT>
+entries for the standard interrupt and reset vectors will be all
+that is initially required to provide the necessary entry points.
+You can also improve the readability of the disassembled output
+by defining symbols for all known hardware addresses (e.g. PIA
+registers and other ports).
+<P>
+Try modifying the supplied example symbol file (<B>ebcgame.sym</B>)
+to suit your application. It is important that the correct processor
+type is specified using a <TT><FONT FACE="Courier">cpu</FONT></TT>
+directive in the symbol file (or by command line switch). The
+disassembler will not make much sense of Z80 code if it thinks
+that the processor is a 6502!
+<P>
+Run the disassembler with code threading. This will identify all
+known areas of code. Data and unknown areas will be listed as
+byte data rather than disassembled into instruction mnemonics.
+Due to limitations of the code threading process (see below) not
+all code areas may be identified. Any additional code entry points
+or address vector tables can be added to the symbol file. Similarly,
+areas of byte, word or string data that can be identified from
+examination of the disassembly listing can also be recorded in
+the symbol file.
+<P>
+Using a repeated &quot;disassemble, inspect listing, update symbol
+file&quot; cycle a comprehensive disassembly of an image can be
+built up quite quickly.
+<P>
+Finally, if you are satisfied that you have identified all main
+data areas, try disassembling without code threading. This will
+help pick up areas of code that may have been missed by the code
+threading and subsequent manual investigation process.
+<H2>Platform</H2>
+<P>
+<B>DASMx</B> is a Win32 console application. This means that it
+is a 32-bit application that requires Windows 95 or Windows NT
+to run. Typically, you will run the disassembler from a DOS box
+command line.
+<H2>Command line options</H2>
+<P>
+<B>DASMx</B> has the following command line options:
+<P>
+<TABLE >
+<TR><TD VALIGN="TOP" WIDTH=111><B>-a</B></TD><TD VALIGN="TOP" WIDTH=586>generate assembler output (default is to generate a full listing file);
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=111><B>-c</B><I>TYPE</I></TD><TD VALIGN="TOP" WIDTH=586>set the CPU processor type - overridden by a <TT><FONT FACE="Courier">cpu</FONT></TT> statement in the symbol file, where <I>TYPE</I> is 6800, 6801, 6802, 6803, 6808, 6809, 6502, Z80 or 8048 (default is 6800);
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=111><B>-o</B><I>NNNN</I></TD><TD VALIGN="TOP" WIDTH=586>set the origin, or start address to <I>NNNN</I> (default is top of address space less the length of the source image);
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=111><B>-t</B></TD><TD VALIGN="TOP" WIDTH=586>perform code threading (requires presence of a symbol file);
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=111><B>-v</B></TD><TD VALIGN="TOP" WIDTH=586>display version information and exit.
+</TD></TR>
+</TABLE>
+<P>
+When specifying the origin, the number <I>NNNN</I> should be specified
+using C language conventions (i.e. default is decimal, precede
+with 0x for hex, precede with 0 for octal).
+<H2>Input files</H2>
+<P>
+The primary input file is a binary image of the code/data to be
+disassembled. This must be code for one of the supported microprocessors
+(or other manufacturers equivalent). <B>DASMx</B> will produce
+meaningless output for any other type of processor.
+<P>
+<B>DASMx</B> assumes a file extension of &quot;.bin&quot; unless
+otherwise specified for the binary image file.
+<P>
+<B>DASMx</B> looks for a symbol file of the same base name as
+the source binary file, but with a &quot;.sym&quot; file extension.
+If a symbol file is found, it will be used. Provision of a symbol
+file is optional, except where code threading is used (where a
+symbol file must be used to define at least one code entry point).
+<H2>Symbol file syntax</H2>
+<P>
+The symbol file is a plain text file that may be created/modified
+with any text editor. The file contains lines which fall into
+one of three categories:
+<UL>
+<LI>comment lines;
+<LI>command lines;
+<LI>blank lines.
+</UL>
+<P>
+Comment lines are denoted by ';' as the first non-whitespace character
+on the line. Command lines start with one of the specified keywords.
+Parameters follow the command keyword, separated by spaces or
+tabs. A comment may be added to the end of a command, preceded
+by the ';' character. Blank lines are ignored.
+<P>
+Number value parameters may be given in decimal (the default),
+octal or hex using standard C language conventions (e.g. 0x prefix
+for hex).
+<P>
+Valid command keywords and their meaning are summarised in the
+table below.<BR>
+<P>
+<TABLE BORDERCOLOR=#000000 BORDER=1>
+<TR><TD WIDTH=97><I><B>Command</B></I></TD><TD WIDTH=600><I><B>Function/syntax</B></I>
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=97><B>cpu</B></TD><TD VALIGN="TOP" WIDTH=600>Specify the processor type. 
+<BR>
+<I>Syntax</I>: <TT><FONT FACE="Courier">cpu 6800 | 6801 | 6802 | 6803 | 6808 | 6809 | 6502 | Z80 | 8048</FONT></TT>
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=97><B>symbol</B></TD><TD VALIGN="TOP" WIDTH=600>Define a symbol corresponding to a value (usually an address). 
+<BR>
+<I>Syntax</I>: <TT><FONT FACE="Courier">symbol <I>&lt;value&gt;</I> <I>&lt;name&gt;</I></FONT></TT>
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=97><B>vector</B></TD><TD VALIGN="TOP" WIDTH=600>Define a location that contains a word pointing to a code entry (for example, the reset entry point). 
+<BR>
+<I>Syntax</I>: <TT><FONT FACE="Courier">vector <I>&lt;address&gt;</I> <I>&lt;vector name&gt;</I> [<I>&lt;destination name&gt;</I>]</FONT></TT>
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=97><B>vectab</B></TD><TD VALIGN="TOP" WIDTH=600>Define a table of vectors (i.e. a jump table) of length <I>&lt;count&gt;</I>. Each vector will be used as a code entry point if threading is used. 
+<BR>
+<I>Syntax</I>: <TT><FONT FACE="Courier">vectab <I>&lt;address&gt;</I> <I>&lt;name&gt;</I> [<I>&lt;count&gt;</I>]</FONT></TT>
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=97><B>code</B></TD><TD VALIGN="TOP" WIDTH=600>Define a code entry point (for code threading). 
+<BR>
+<I>Syntax</I>: code &lt;address&gt; [&lt;name&gt;]
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=97><B>byte</B></TD><TD VALIGN="TOP" WIDTH=600>Define a single data byte, or <I>&lt;count&gt;</I> length array of bytes.<BR>
+<I>Syntax</I>: <TT><FONT FACE="Courier">byte <I>&lt;address&gt;</I> <I>&lt;name&gt;</I> [<I>&lt;count&gt;</I>]</FONT></TT>
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=97><B>word</B></TD><TD VALIGN="TOP" WIDTH=600>Define a single data word, or <I>&lt;count&gt;</I> length array of words. 
+<BR>
+<I>Syntax</I>: <TT><FONT FACE="Courier">word <I>&lt;address&gt;</I> <I>&lt;name&gt;</I> [<I>&lt;count&gt;</I>]</FONT></TT>
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=97><B>addrtab</B></TD><TD VALIGN="TOP" WIDTH=600>Define a table of addresses, which point to data, of length <I>&lt;count&gt;</I>. 
+<BR>
+<I>Syntax</I>: <TT><FONT FACE="Courier">addrtab <I>&lt;address&gt;</I> <I>&lt;name&gt;</I> [<I>&lt;count&gt;</I>]</FONT></TT>
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=97><B>string</B></TD><TD VALIGN="TOP" WIDTH=600>Define a single data character, or <I>&lt;count&gt;</I> length string of chars. 
+<BR>
+<I>Syntax</I>: <TT><FONT FACE="Courier">string <I>&lt;address&gt;</I> <I>&lt;name&gt;</I> [<I>&lt;count&gt;</I>]</FONT></TT>
+</TD></TR>
+</TABLE>
+<H2>Output files</H2>
+<P>
+By default, <B>DASMx</B> generates a disassembly listing file.
+This is similar to the full listing file generated by most assemblers.
+Optionally, <B>DASMx</B> can be made to produce an assembly file
+instead. This could then be used as a source file to an assembler
+of your choice (with certain provisos concerning pseudo-ops and
+number formats noted later).
+<P>
+As an aid to readability, <B>DASMx</B> inserts a comment line
+after all breaks in a sequence of instructions (e.g. after an
+unconditional branch or jump, or a return from subroutine). Comment
+lines are also inserted between code and data areas. This use
+of comment lines breaks the output listing into identifiable sections
+and aids manual inspection of the resultant disassembly listing.
+<P>
+Note that output files tend to be large. For example, a 32&nbsp;Kbyte
+ROM image will generate a listing file of around half a megabyte
+in length.
+<P>
+The output file is named based upon the name of the source image
+file, but with a file extension of &quot;.lst&quot; for the list
+file or &quot;.asm&quot; for the assembly output file.
+<H2>Code threading</H2>
+<P>
+Code threading is a very powerful feature that will automatically
+identify known areas of code. It can prove particularly useful
+in the early stages of disassembly of an image that contains large
+areas of data. Such data areas would otherwise be disassembled
+incorrectly as code and would add many erroneous symbols to the
+symbol table.
+<P>
+Code threading works by performing a partial emulation of the
+processor; executing instructions starting from one or more known
+entry points. Code threading follows calls to subroutines and
+conditional and unconditional branches. In certain cases, the
+code threading may fail to follow certain code paths (i.e. leaving
+valid code still defined as data). The following are examples
+of where the code threader will fail to follow a correct execution
+path:
+<UL>
+<LI>pushing an address onto the stack and then, later, performing
+a return from subroutine instruction (i.e. as a method of performing
+a jump);
+<LI>performing an indexed branch instruction (e.g. using addresses
+taken from a vector table);
+<LI>use of undocumented instruction opcodes - since threads are
+abandoned when an invalid opcode is detected;
+<LI>self-modifying code.
+</UL>
+<P>
+Indexed branch instructions are highlighted in the output listing
+by automatically generated comments. These are an indication that
+you need to manually identify what the contents of the index register
+will be prior to the branch (often obvious - look for a preceding
+load index register instruction). Then, you can add a <TT><FONT FACE="Courier">code</FONT></TT>
+or a <TT><FONT FACE="Courier">vectab</FONT></TT> entry to the
+symbol file and repeat the disassembly.
+<P>
+In rare cases, code threading may incorrectly identify data as
+code:
+<UL>
+<LI>a call to a subroutine that never returns (e.g. the subroutine
+discards the return address); the other side of the call containing
+data rather than code.
+<LI>a conditional branch that is always, or never, executed (and
+the other side of the branch contains data rather than code).
+</UL>
+<P>
+Note that this latter scenario is pretty unlikely and requires
+a particularly perverse programmer of the original code. So, in
+general, code threading will identify guaranteed known areas of
+code that may be a subset of the overall actual code. Most of
+the above problem areas can be dealt with by manual inspection
+of the disassembly listing and subsequent additions to the symbol
+file.
+<P>
+A thread of execution it may be abandoned for one of two reasons.
+If a branch or subroutine call is made outside the address range
+corresponding to the source image then that thread is not followed.
+Also, if an invalid instruction is detected then the thread terminates
+immediately. This will produce a command line error message identifying
+the address where the problem occurred. Normally this represents
+an error condition that can be corrected by the person operating
+the disassembler:
+<UL>
+<LI>the processor type is incorrectly specified;
+<LI>the source binary image is not real code;
+<LI>an incorrect code entry point has been supplied;
+<LI>so called &quot;undocumented&quot; instructions have been
+used.
+</UL>
+<P>
+In rare cases, the original programmer may have done something
+that causes the code threader to incorrectly identify data as
+code. These cases may also result in invalid instruction messages.
+<H2>Microprocessor specifics</H2>
+<P>
+The following sub-sections detail items of note relating to disassembly
+for the specific microprocessors (and their variants) supported
+by <B>DASMx</B>.
+<H3>Motorola 6800/6802/6808</H3>
+<P>
+The Motorola 6800, 6802 and 6808 share an identical instruction
+set.
+<P>
+Assembler mnemonics follow the Motorola standard definitions (see
+reference [1]). Note that there are two common styles for instructions
+involving the A and B registers:
+<UL>
+<LI>the A or B register name is separated by whitespace from the
+base instruction (e.g. <B>lda&nbsp;b&nbsp;value</B>);
+<LI>the A or B register name is used as a suffix to the instruction
+mnemonic (e.g. <B>ldab&nbsp;value</B>).
+</UL>
+<P>
+<B>DASMx</B> uses the latter style. This point also applies to
+the 6801/6803 and 6809 mnemonics generated by the disassembler.
+<H3>Motorola 6801/6803</H3>
+<P>
+The Motorola 6801 and 6803 share an identical instruction set
+that is an object code compatible superset of that of the base
+6800. These processors contain on-chip timer and I/O plus an expanded
+interrupt vector area over that of the 6800. Definitions for these
+in a symbol file will be useful for disassembly of any 6801/6803
+code. See the supplied 6803 symbol file, <B>ebcgame.sym</B>, for
+an example that could be used as a template for other 6801/6803
+disassembly.
+<H3>Motorola 6809</H3>
+<P>
+The Motorola 6809 has an instruction set that is compatible with
+that of the 6800<I> at the assembler level</I> (i.e. it is <I>not</I>
+binary compatible, but every 6800 instruction mnemonic is present
+in the 6809 instruction set). The 6809 also contains many additional
+instructions that are not present in the 6800.
+<P>
+With certain provisos, if the CPU type is set to 6809 then <B>DASMx</B>
+can be used to disassemble code from a Hitachi 6309 processor.
+That device is object code compatible with the 6809, with additional
+instructions. <B>DASMx</B> will not recognise these extra instructions.
+Consequently, it is not advised to use code threading when disassembling
+6309 code.
+<H3>MOS Technology/Rockwell 6502</H3>
+<P>
+The MOS Technology/Rockwell 6502 has a similar instruction set
+to that of the 6800 (but totally opcode incompatible).
+<P>
+A number of 6502 variants, with expanded instruction sets and
+addressing capabilities, have appeared over the years. <B>DASMx</B>
+may be used to disassemble code for these 6502 variants (such
+as the Rockwell 65C02), but it will not cope with their additional
+instructions. Consequently, code threading will not operate effectively
+on such devices.
+<H3>Zilog Z80</H3>
+<P>
+The Zilog Z80 (also made by Mostek, Sharp, NEC and other second
+sources) has an instruction set that is binary compatible with
+that of the Intel 8080, but with many additional instructions.
+Although each 8080 instruction has an identical Z80 instruction,
+Zilog chose to use a different mnemonic style for almost every
+instruction. Consequently, Z80 assembler (even if restricted to
+the 8080 subset) appears quite different even though the resulting
+binary image is identical.
+<P>
+The Z80 has a great many (so called) undocumented instructions
+that (sometimes) perform useful functions. <B>DASMx</B> does not
+currently support these additional instructions.
+<P>
+Like the 6502, the Z80 has spawned many variants with opcode compatible
+instruction supersets. <B>DASMx</B> can be used on code for these
+devices with the standard caveat that any of the new instructions
+will not be disassembled as valid code (and therefore code threading
+is not advised).
+<H3>Intel 8080 and 8085</H3>
+<P>
+Because the 8080 has an instruction set that is a compatible binary
+subset of those of the Z80, <B>DASMx</B> will correctly disassemble
+8080 code provided that the CPU type is specified as <TT><FONT FACE="Courier">Z80</FONT></TT>.
+The one caveat is that, of course, the mnemonics generated will
+be of the Zilog rather than Intel style. This may not suit Intel
+assembler die-hards, but no doubt time with &quot;search and replace&quot;
+in an editor could fix things to their satisfaction.
+<P>
+The Intel 8085 is an enhanced version of the 8080, with two additional
+instructions (<TT><FONT FACE="Courier">rim</FONT></TT> and <TT><FONT FACE="Courier">sim</FONT></TT>)
+used to control new serial in and out pins. If used, these two
+new instructions will cause problems when operating <B>DASMx</B>
+as a Z80 disassembler on 8085 code.
+<P>
+<TT><FONT FACE="Courier">rim</FONT></TT> is a one byte instruction,
+but <B>DASMx</B> will attempt to disassemble this as the two byte
+<TT><FONT FACE="Courier">jr&nbsp;nz</FONT></TT> Z80 instruction.
+This will both generate a false label and ignore the next byte
+in the 8085 opcode stream. Since that could be the first byte
+in a multi-byte opcode it could take a number of erroneously disassembled
+instructions before synchronisation is achieved.
+<P>
+<TT><FONT FACE="Courier">sim</FONT></TT> is a one byte instruction
+that will be disassembled as the first byte of the three byte
+<TT><FONT FACE="Courier">ld&nbsp;hl</FONT></TT> immediate instruction.
+The results will be similar to those for <TT><FONT FACE="Courier">rim</FONT></TT>.
+<P>
+The conclusion is that <B>DASMx</B> should be used with care on
+8085 code (particularly if it is known that the application hardware
+makes use of the SID and SOD I/O pins). Code threading is best
+avoided.
+<H3>Intel 8048 (MCS-48&#153; family)</H3>
+<P>
+<B>DASMx</B> will disassemble opcodes for the following Intel
+MCS-48&#153; family devices (and equivalents from second source
+manufacturers): 8021, 8022, 8035, 8039, 8041, 8741, 8048, 8049
+and 8748. The CPU type should be set to <TT><FONT FACE="Courier">8048</FONT></TT>
+and the term &quot;8048&quot; is used throughout this documentation
+to refer to this family of devices.
+<P>
+The 8021 instruction set is a much reduced subset of the full
+8048 set of instructions.
+<P>
+The 8022 has a very similar instruction set to the 8021, but with
+slightly more of the 8048 instructions and a few new instructions
+to handle the on-chip analogue to digital converter.
+<P>
+The 8041/8741 has almost the same instruction set as the 8048,
+but with just a few instructions missing.
+<P>
+Code for the 8021, 8022, 8041 and 8741 variants can be disassembled
+by <B>DASMx</B> with the caveat that data areas may be disassembled
+as 8048 instructions that are in fact illegal on the variant.
+<P>
+The 8048 jump and call instructions operate on an 11-bit address
+(i.e. within a 2&nbsp;Kbyte memory bank). A memory bank select
+bit (controlled by the <TT><FONT FACE="Courier">sel&nbsp;mb0</FONT></TT>
+and <TT><FONT FACE="Courier">sel&nbsp;mb1</FONT></TT> instructions)
+is combined with the 11-bit jump/call address to give full 12-bit
+addressing within the 4&nbsp;Kbyte address space of the 8048.
+This presents a problem for the code threading and automatic label
+generation functions of <B>DASMx</B> since a destination address
+can only be fully calculated if the last memory bank select operation
+is known. Tracking the state of the memory bank select bit is
+currently beyond the capabilities of <B>DASMx</B>. For this reason,
+it is advised that code threading is not used if the size of the
+8048 source image exceeds 2&nbsp;Kbytes. If images greater than
+this are disassembled, even with threading disabled, some errors
+in automatically generated labels may be expected.
+<H2>Assembler pseudo operations</H2>
+<P>
+Assembler pseudo operations (e.g. that to define a data word)
+are <I>not</I> in a standard style that matches the chosen processor.
+The pseudo-ops are common across all processor disassembly output.
+In general, the pseudo-ops follow the Intel conventions:
+<UL>
+<LI>the ';' character to denote a comment;
+<LI>the ':' character following a label;
+<LI><B>db</B>, to define a data byte, character or string;
+<LI><B>dw</B>, to define a data word;
+<LI><B>org</B>, to specify a starting address.
+</UL>
+<P>
+If these do not suit your preferred assembler, then use of search
+and replace in a text editor can probably effect the required
+changes.
+<H2>Number format</H2>
+<P>
+The number format used in the disassembled instructions follows
+Motorola conventions - a preceding '$' character is used to denote
+a hex address value. Immediate values (again, given in hex) are
+preceded by a '#' character. All numbers and addresses in the
+listing part of the disassembly output are given in hex, although
+for clarity no preceding '$' characters are used.
+<P>
+Numbers in the operand field of a disassembled instruction are
+usually given in hex. Small positive or negative offsets in 6809
+index instructions are given as a signed decimal number.
+<H1>Future enhancements</H1>
+<P>
+Whilst there is no guarantee that future versions of this disassembler
+software will be released, some or all of the following areas
+are likely to receive attention in any future version:
+<UL>
+<LI>fixing any errors discovered in the instruction mnemonics
+or disassembly of an opcode to its instruction;
+<LI>rationalisation of the pseudo-ops and number format such that
+the assembler output can be fed directly into at least one common
+assembler without further text editing;
+<LI>improved code threading (through use of a more complete emulation
+of the processor);
+<LI>improved symbol table output in listing file;
+<LI>specifying comments in the symbol file for inclusion in the
+output files;
+<LI>specifying the origin in the symbol file (currently, for practical
+reasons, it is much easier for this to be a command line option);
+<LI>additional memory map output in listing file;
+<LI>inclusion of clock cycle count information in listing file;
+<LI>full support for the Intel 8080 and 8085 with correct mnemonics;
+<LI>better support for 8048 code greater than 2&nbsp;Kbytes and
+for 8048 variants;
+<LI>support for other 8-bit microprocessors (e.g. Intel 8051,
+Signetics 2650);
+<LI>support for variants of the currently supported processors
+(e.g. Hitachi 6309, Rockwell 65C02);
+<LI>disassembly of commonly known &quot;undocumented&quot; instructions.
+</UL>
+<P>
+Fixing actual disassembly errors (if any are discovered) will
+be treated with priority.
+<P>
+Note that it is not currently intended to support platforms other
+than Windows 95 or NT. In particular, there will be no 16-bit
+versions for DOS or any other 16-bit operating systems. If the
+demand exists, a Linux version may be produced.
+<H1>Contacting the author</H1>
+<P>
+Feedback to Conquest Consultants may be made via pclare@bigfoot.com.
+<H1>References</H1>
+<P>
+The following publications were referred to in the course of the
+development of <B>DASMx</B>. This may also be considered to be
+a useful reference list for anyone programming these processors
+at assembler level and/or inspecting the output of <B>DASMx</B>.
+<P>
+<TABLE >
+<TR><TD VALIGN="TOP" WIDTH=54><CENTER>[1]</CENTER></TD><TD VALIGN="TOP" WIDTH=643><I>M6800 Microprocessor Applications Manual</I>, Motorola Semiconductor Products Inc., First Edition, 1975.
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=54><CENTER>[2]</CENTER></TD><TD VALIGN="TOP" WIDTH=643><I>Hitachi Microcomputer Databook 8-bit HD6800 &amp; 16-bit HD68000</I>, Hitachi Ltd., March 1983.
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=54><CENTER>[3]</CENTER></TD><TD VALIGN="TOP" WIDTH=643><I>Programming the 6502</I>, Rodnay Zaks, Sybex, ISBN&nbsp;0-89588-046-6, Third Edition, 1980.
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=54><CENTER>[4]</CENTER></TD><TD VALIGN="TOP" WIDTH=643><I>6502 Assembly Language Programming</I>, Lance A.Leventhal, Osborne/McGraw-Hill, ISBN&nbsp;0-931988-27-6, 1979.
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=54><CENTER>[5]</CENTER></TD><TD VALIGN="TOP" WIDTH=643><I>R650X and R651X Microprocessors (CPU)</I>, Rockwell, 29000D39, Data Sheet D39, Revision 6, February 1984.
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=54><CENTER>[6]</CENTER></TD><TD VALIGN="TOP" WIDTH=643><I>TLCS-Z80 System Manual</I>, Toshiba, 4419 '84-05(CK), June 1984.
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=54><CENTER>[7]</CENTER></TD><TD VALIGN="TOP" WIDTH=643><I>MCS-48&#153; User's Manual</I>, Intel, 9800270D, July 1978.
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=54><CENTER>[8]</CENTER></TD><TD VALIGN="TOP" WIDTH=643><I>48-Series Microprocessors Handbook</I>, National Semiconductor, 1980.
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=54><CENTER>[9]</CENTER></TD><TD VALIGN="TOP" WIDTH=643><I>Component Data Catalog</I>, Intel, 1980.
+</TD></TR>
+<TR><TD VALIGN="TOP" WIDTH=54><CENTER>[10]</CENTER></TD><TD VALIGN="TOP" WIDTH=643><I>Osborne 4 &amp; 8-Bit Microprocessor Handbook</I>, Adam Osborne &amp; Gerry Kane, Osborne/McGraw-Hill, ISBN&nbsp;0-931988-42-X, 1980.
+</TD></TR>
+</TABLE>
+<P>
+</BODY>
+</HTML>

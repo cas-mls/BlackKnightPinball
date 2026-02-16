@@ -1,0 +1,53 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+02-blanking (Williams sys6a)
+
+
+
+PURPOSE
+==============================================================================================
+
+Keeps Blanking signal alive.
+
+
+
+PROCEDURE
+==============================================================================================
+
+Connect a Logic probe to the MPU board as follows:
+
+  | Black wire: TP10 (GND)
+  |   Red wire: TP9  (+5V)
+  |  Probe Tip: TP4  (BLANKING)
+
+EXPECTED RESULTS
+==============================================================================================
+
+Both LEDs on the MPU board will appear to be lit. In fact they are alternating back and forth
+at 120Hz. TP 4 should stay HIGH (without pulsing). If so you can move on to the next test.
+
+If TP4 is LOW (or is HIGH but occasionally pulses LOW) then the board is failing this test.
+
+Check for pulsing signals on (in this order):
+
+    * PIA1 Pin4 - If not pulsing then replace PIA1 (oscilloscope users: pulses at 120hz or
+    every 8.36ms)
+
+    * System 6: IC7 Pin6 - If not pulsing then replace IC7
+
+    * System 4: IC7 Pin10, Pin9, Pin8 - If not pulsing then replace IC7
+
+    * IC23 Pin12 - If not pulsing then replace Q5
+
+
+    NOTE: Oscilloscope users: The signal on PIA1 Pin 4 will refresh at different rates for the
+    remaining test ROMs based on how they were written and may fluctuate on those ROMs. For
+    this ROM, it should perform consistently at the rate stated above.
+
+
+If the above three are all good and still no blanking signal on 1J1-37 then replace IC23.
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

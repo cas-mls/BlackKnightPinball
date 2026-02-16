@@ -1,0 +1,106 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+PINCODER ADAPTER SETTINGS FOR THIS RELEASE
+==============================================================================================
+
+The DIP switch settings are from left (closest to the jumpers) to right (at the board edge). A
+"-" means the DIP switch should be set to 0 (down), and a "1" means it should be set to 1
+(up).
+
+!!!
+!!!   WARNING: JP1 AND JP2 MUST BE SET THE SAME! If you set JP1 to 1-2 then you must also set
+!!!   JP2 to 1-2. Failure to do so may damage your machine and/or this adapter.
+!!!
+
+Be sure to read the documentation for the system you are troublshooting as the notes for a
+test may differ slightly depending on the system they are intended for.
+
+  | ROM GROUP: Williams/sys346/2K
+  | GAMES: Hot Tip, Lucky Seven, World Cup, Contact, Disco Fever, Pokerino, Phoenix, Flash, Stellar Wars, Tri Zone, Time Warp, Gorgar, Laser Ball, FirePower, Blackout, Scorpion
+  | ================================================
+  | JP1   JP2   DIP SWITCHES   ROM NAME
+  | ----  ---   ------------   ---------------------
+  | 1-2   1-2     --------     01a-leds
+  | 1-2   1-2     -------1     01b-bus
+  | 1-2   1-2     ------1-     01c-transceivers
+  | 1-2   1-2     ------11     02-blanking
+  | 1-2   1-2     -----1--     03-cmos-IC19
+  | 1-2   1-2     -----1-1     04-ram-IC13
+  | 1-2   1-2     -----11-     04-ram-IC16
+  | 1-2   1-2     -----111     05-displays
+  | 1-2   1-2     ----1---     06-switches
+  | 1-2   1-2     ----1--1     07-bounce
+  | 1-2   1-2     ----1-1-     08-interrupts
+  | 1-2   1-2     ----1-11     09-lamps
+  | 1-2   1-2     ----11--     10-solenoids
+  | 1-2   1-2     ----11-1     11a-sounds
+  | 1-2   1-2     ----111-     11b-sounds
+  | 1-2   1-2     ----1111     12-flippers
+  | 1-2   1-2     ---1----     clear_cmos
+  | 1-2   1-2     ---1---1     edit_cmos
+  | 1-2   1-2     ---1--1-     init_cmos
+  | 
+  | 
+  | 
+  | ROM GROUP: Williams/sys6a/2K
+  | GAMES: Alien Poker, Algar
+  | ================================================
+  | JP1   JP2   DIP SWITCHES   ROM NAME
+  | ----  ---   ------------   ---------------------
+  | 1-2   1-2     ---1--11     01a-leds
+  | 1-2   1-2     ---1-1--     01b-bus
+  | 1-2   1-2     ---1-1-1     01c-transceivers
+  | 1-2   1-2     ---1-11-     02-blanking
+  | 1-2   1-2     ---1-111     03-cmos-IC19
+  | 1-2   1-2     ---11---     04-ram-IC13
+  | 1-2   1-2     ---11--1     04-ram-IC16
+  | 1-2   1-2     ---11-1-     05-displays
+  | 1-2   1-2     ---11-11     06-switches
+  | 1-2   1-2     ---111--     07-bounce
+  | 1-2   1-2     ---111-1     08-interrupts
+  | 1-2   1-2     ---1111-     09-lamps
+  | 1-2   1-2     ---11111     10-solenoids
+  | 1-2   1-2     --1-----     11a-sounds
+  | 1-2   1-2     --1----1     11b-sounds
+  | 1-2   1-2     --1---1-     12-flippers
+  | 1-2   1-2     --1---11     clear_cmos
+  | 1-2   1-2     --1--1--     edit_cmos
+  | 1-2   1-2     --1--1-1     init_cmos
+  | 
+  | 
+  | 
+  | ROM GROUP: Williams/sys7/4K
+  | GAMES: Barracora, Black Knight, Cosmic Gunfight, Defender Pinball, Firepower II, Hyperball, Joust Pinball, Jungle Lord, Laser Cue, Pharoah, Solar Fire, Time Fantasy, Varkon, Warlok
+  | ================================================
+  | JP1   JP2   DIP SWITCHES   ROM NAME
+  | ----  ---   ------------   ---------------------
+  | 2-3   2-3     --1--11-     01a-leds
+  | 2-3   2-3     --1-1---     01b-bus
+  | 2-3   2-3     --1-1-1-     01c-transceivers
+  | 2-3   2-3     --1-11--     02-blanking
+  | 2-3   2-3     --1-111-     03-cmos-IC19
+  | 2-3   2-3     --11----     04-ram-IC13
+  | 2-3   2-3     --11--1-     04-ram-IC16
+  | 2-3   2-3     --11-1--     05-displays
+  | 2-3   2-3     --11-11-     06-switches
+  | 2-3   2-3     --111---     07-bounce
+  | 2-3   2-3     --111-1-     08-interrupts
+  | 2-3   2-3     --1111--     09-lamps
+  | 2-3   2-3     --11111-     10-solenoids
+  | 2-3   2-3     -1------     11a-sounds
+  | 2-3   2-3     -1----1-     11b-sounds
+  | 2-3   2-3     -1---1--     12-flippers
+  | 2-3   2-3     -1---11-     clear_cmos
+  | 2-3   2-3     -1--1---     edit_cmos
+  | 2-3   2-3     -1--1-1-     init_cmos
+
+SUPPORT
+==============================================================================================
+
+For help on using the ROM images please see:
+
+  | https://pinside.com/pinball/forum/topic/new-williams-system-6-in-game-test-roms
+
+Thank you again for your support!
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

@@ -1,0 +1,561 @@
+				;
+				;	Disassembled by:
+				;		DASMx object code disassembler
+				;		(c) Copyright 1996, 1997   Conquest Consultants
+				;		Version 1.10 (Jul 16 1997)
+				;
+				;	File:	ic26.716
+				;	Date:	Sun Jul 04 19:51:37 2021
+				;	CPU:	Motorola 6800/6802/6808
+				;
+					org	$5800
+				;
+5800				ic26:
+5800				u26rom:
+5800 : 0A 		" "		clv
+				;
+5801 : 00 E3 36 BD 	"  6 "		db	$00, $E3, $36, $BD
+5805 : FB 80 BD EB 	"    "		db	$FB, $80, $BD, $EB
+5809 : 8E D5 9C 39 	"   9"		db	$8E, $D5, $9C, $39
+580D : CE 00 5C BD 	"  \ "		db	$CE, $00, $5C, $BD
+5811 : EE FF C6 7F 	"    "		db	$EE, $FF, $C6, $7F
+5815 : E7 00 BD E6 	"    "		db	$E7, $00, $BD, $E6
+5819 : 7B C6 80 BD 	"{   "		db	$7B, $C6, $80, $BD
+581D : EA 2F 0C D7 	" /  "		db	$EA, $2F, $0C, $D7
+5821 : 9C 8D E0 26 	"   &"		db	$9C, $8D, $E0, $26
+5825 : FC DA 9C 8D 	"    "		db	$FC, $DA, $9C, $8D
+5829 : 3F 86 1E BD 	"?   "		db	$3F, $86, $1E, $BD
+582D : EC FC C1 FF 	"    "		db	$EC, $FC, $C1, $FF
+5831 : 26 E9 C6 7F 	"&   "		db	$26, $E9, $C6, $7F
+5835 : BD EA 2F 0C 	"  / "		db	$BD, $EA, $2F, $0C
+5839 : D7 9C 8D C7 	"    "		db	$D7, $9C, $8D, $C7
+583D : 27 FC 53 D4 	"' S "		db	$27, $FC, $53, $D4
+5841 : 9C 8D 25 86 	"  % "		db	$9C, $8D, $25, $86
+5845 : 1E BD EC FC 	"    "		db	$1E, $BD, $EC, $FC
+5849 : 17 48 24 FD 	" H$ "		db	$17, $48, $24, $FD
+584D : 26 E6 BD FB 	"&   "		db	$26, $E6, $BD, $FB
+5851 : 80 84 03 8B 	"    "		db	$80, $84, $03, $8B
+5855 : 03 97 B7 BD 	"    "		db	$03, $97, $B7, $BD
+5859 : EA 24 6D 98 	" $m "		db	$EA, $24, $6D, $98
+585D : 26 F7 5D 2B 	"& ]+"		db	$26, $F7, $5D, $2B
+5861 : 37 C1 01 27 	"7  '"		db	$37, $C1, $01, $27
+5865 : 3E 54 20 37 	">T 7"		db	$3E, $54, $20, $37
+5869 : 36 96 09 8D 	"6   "		db	$36, $96, $09, $8D
+586D : 02 32 39 DF 	" 29 "		db	$02, $32, $39, $DF
+5871 : 9A 37 97 9E 	" 7  "		db	$9A, $37, $97, $9E
+5875 : 86 04 97 9C 	"    "		db	$86, $04, $97, $9C
+5879 : 86 FF 58 24 	"  X$"		db	$86, $FF, $58, $24
+587D : 08 96 9E 48 	"   H"		db	$08, $96, $9E, $48
+5881 : 48 48 48 8A 	"HHH "		db	$48, $48, $48, $8A
+5885 : 0F 58 24 04 	" X$ "		db	$0F, $58, $24, $04
+5889 : 84 F0 9B 9E 	"    "		db	$84, $F0, $9B, $9E
+588D : A7 00 08 7A 	"   z"		db	$A7, $00, $08, $7A
+5891 : 00 9C 26 E4 	"  & "		db	$00, $9C, $26, $E4
+5895 : 33 DE 9A 39 	"3  9"		db	$33, $DE, $9A, $39
+5899 : C1 C0 27 07 	"  ' "		db	$C1, $C0, $27, $07
+589D : 58 CA 80 8D 	"X   "		db	$58, $CA, $80, $8D
+58A1 : C7 20 B2 C8 	"    "		db	$C7, $20, $B2, $C8
+58A5 : 80 36 BD FB 	" 6  "		db	$80, $36, $BD, $FB
+58A9 : 80 81 10 32 	"   2"		db	$80, $81, $10, $32
+58AD : 24 A7 20 9E 	"$   "		db	$24, $A7, $20, $9E
+58B1 : A0 05 B0 FF 	"    "		db	$A0, $05, $B0, $FF
+58B5 : 50 A0 02 CE 	"P   "		db	$50, $A0, $02, $CE
+58B9 : D8 BE 7E EA 	"  ~ "		db	$D8, $BE, $7E, $EA
+58BD : C4 BD F3 AB 	"    "		db	$C4, $BD, $F3, $AB
+58C1 : 5B FB FE F2 	"[   "		db	$5B, $FB, $FE, $F2
+58C5 : F0 30 42 03 	" 0B "		db	$F0, $30, $42, $03
+58C9 : BA 01 03 58 	"   X"		db	$BA, $01, $03, $58
+58CD : 47 DB 2B 5A 	"G +Z"		db	$47, $DB, $2B, $5A
+58D1 : F6 03 F7 52 	"   R"		db	$F6, $03, $F7, $52
+58D5 : 35 C1 01 C0 	"5   "		db	$35, $C1, $01, $C0
+58D9 : 2F 5A F6 00 	"/Z  "		db	$2F, $5A, $F6, $00
+58DD : 02 B1 FF 16 	"    "		db	$02, $B1, $FF, $16
+58E1 : 00 75 5A E0 	" uZ "		db	$00, $75, $5A, $E0
+58E5 : 10 5A FC E1 	" Z  "		db	$10, $5A, $FC, $E1
+58E9 : 01 02 16 00 	"    "		db	$01, $02, $16, $00
+58ED : B0 01 5B FC 	"  [ "		db	$B0, $01, $5B, $FC
+58F1 : E0 38 EC 8F 	" 8  "		db	$E0, $38, $EC, $8F
+58F5 : E8 91 C9 5A 	"   Z"		db	$E8, $91, $C9, $5A
+58F9 : FC EA 00 CE 	"    "		db	$FC, $EA, $00, $CE
+58FD : BA FF 7A 8F 	"  z "		db	$BA, $FF, $7A, $8F
+5901 : CE 5A FB 42 	" Z B"		db	$CE, $5A, $FB, $42
+5905 : FB F9 4C E0 	"  L "		db	$FB, $F9, $4C, $E0
+5909 : F3 E0 4C 49 	"  LI"		db	$F3, $E0, $4C, $49
+590D : 8B E0 BD EB 	"    "		db	$8B, $E0, $BD, $EB
+5911 : 23 80 94 14 	"#   "		db	$23, $80, $94, $14
+5915 : 00 B0 B4 52 	"   R"		db	$00, $B0, $B4, $52
+5919 : 04 5A 68 02 	" Zh "		db	$04, $5A, $68, $02
+591D : 15 00 4D F6 	"  M "		db	$15, $00, $4D, $F6
+5921 : 01 96 C4 0F 	"    "		db	$01, $96, $C4, $0F
+5925 : C1 03 24 02 	"  $ "		db	$C1, $03, $24, $02
+5929 : C6 03 45 37 	"  E7"		db	$C6, $03, $45, $37
+592D : C6 20 24 00 	"  $ "		db	$C6, $20, $24, $00
+5931 : B0 40 26 00 	" @& "		db	$B0, $40, $26, $00
+5935 : B0 C0 72 B1 	"  r "		db	$B0, $C0, $72, $B1
+5939 : FF 5B FC E1 	" [  "		db	$FF, $5B, $FC, $E1
+593D : 00 F0 44 33 	"  D3"		db	$00, $F0, $44, $33
+5941 : 5A 5B FC E1 	"Z[  "		db	$5A, $5B, $FC, $E1
+5945 : 00 E4 25 00 	"  % "		db	$00, $E4, $25, $00
+5949 : 57 EB 23 B0 	"W # "		db	$57, $EB, $23, $B0
+594D : 4C 15 00 B0 	"L   "		db	$4C, $15, $00, $B0
+5951 : 02 14 00 53 	"   S"		db	$02, $14, $00, $53
+5955 : 80 15 00 03 	"    "		db	$80, $15, $00, $03
+5959 : 96 60 97 E9 	" `  "		db	$96, $60, $97, $E9
+595D : D6 D0 B6 01 	"    "		db	$D6, $D0, $B6, $01
+5961 : 94 98 58 BD 	"  X "		db	$94, $98, $58, $BD
+5965 : F3 AB FB 55 	"   U"		db	$F3, $AB, $FB, $55
+5969 : F8 E0 5B FA 	"  [ "		db	$F8, $E0, $5B, $FA
+596D : FA F3 43 FC 	"  C "		db	$FA, $F3, $43, $FC
+5971 : FF 0F E0 00 	"    "		db	$FF, $0F, $E0, $00
+5975 : FD 02 E1 02 	"    "		db	$FD, $02, $E1, $02
+5979 : 10 46 CA 00 	" F  "		db	$10, $46, $CA, $00
+597D : 34 61 62 63 	"4abc"		db	$34, $61, $62, $63
+5981 : 64 55 F8 20 	"dU  "		db	$64, $55, $F8, $20
+5985 : 5A FC D8 00 	"Z   "		db	$5A, $FC, $D8, $00
+5989 : 04 11 5F C3 	"  _ "		db	$04, $11, $5F, $C3
+598D : 00 5A 68 1C 	" Zh "		db	$00, $5A, $68, $1C
+5991 : 5B FB 5F FD 	"[ _ "		db	$5B, $FB, $5F, $FD
+5995 : 01 D7 02 90 	"    "		db	$01, $D7, $02, $90
+5999 : 35 31 0A 29 	"51 )"		db	$35, $31, $0A, $29
+599D : 4A 5A FC D9 	"JZ  "		db	$4A, $5A, $FC, $D9
+59A1 : 00 17 FA 48 	"   H"		db	$00, $17, $FA, $48
+59A5 : CE D9 D7 BD 	"    "		db	$CE, $D9, $D7, $BD
+59A9 : EA C4 80 0D 	"    "		db	$EA, $C4, $80, $0D
+59AD : 19 0C 18 86 	"    "		db	$19, $0C, $18, $86
+59B1 : 87 88 09 18 	"    "		db	$87, $88, $09, $18
+59B5 : 04 11 01 10 	"    "		db	$04, $11, $01, $10
+59B9 : 23 57 E3 55 	"#W U"		db	$23, $57, $E3, $55
+59BD : 57 E3 64 5B 	"W d["		db	$57, $E3, $64, $5B
+59C1 : FD E0 02 05 	"    "		db	$FD, $E0, $02, $05
+59C5 : 53 28 56 E5 	"S(V "		db	$53, $28, $56, $E5
+59C9 : 97 56 E3 C1 	" V  "		db	$97, $56, $E3, $C1
+59CD : 04 39 48 CE 	" 9H "		db	$04, $39, $48, $CE
+59D1 : D9 FC BD EA 	"    "		db	$D9, $FC, $BD, $EA
+59D5 : C4 02 BD F3 	"    "		db	$C4, $02, $BD, $F3
+59D9 : AB 52 E0 53 	" R S"		db	$AB, $52, $E0, $53
+59DD : FF 53 80 44 	" S D"		db	$FF, $53, $80, $44
+59E1 : 96 D6 5A FB 	"  Z "		db	$96, $D6, $5A, $FB
+59E5 : FB FC E0 00 	"    "		db	$FB, $FC, $E0, $00
+59E9 : FC E2 00 42 	"   B"		db	$FC, $E2, $00, $42
+59ED : EE 57 FB 30 	" W 0"		db	$EE, $57, $FB, $30
+59F1 : 5A FE F2 F0 	"Z   "		db	$5A, $FE, $F2, $F0
+59F5 : C0 F7 C2 00 	"    "		db	$C0, $F7, $C2, $00
+59F9 : FA 8F E0 BD 	"    "		db	$FA, $8F, $E0, $BD
+59FD : F3 AB 52 22 	"  R""		db	$F3, $AB, $52, $22
+5A01 : 7A 12 27 76 	"z 'v"		db	$7A, $12, $27, $76
+5A05 : 5A FD E4 01 	"Z   "		db	$5A, $FD, $E4, $01
+5A09 : 03 12 14 76 	"   v"		db	$03, $12, $14, $76
+5A0D : 5A FD E4 00 	"Z   "		db	$5A, $FD, $E4, $00
+5A11 : 02 12 29 5B 	"  )["		db	$02, $12, $29, $5B
+5A15 : 27 EA 10 A9 	"'   "		db	$27, $EA, $10, $A9
+5A19 : 14 8F E5 BD 	"    "		db	$14, $8F, $E5, $BD
+5A1D : F3 AB 33 08 	"  3 "		db	$F3, $AB, $33, $08
+5A21 : 09 0E 04 BD 	"    "		db	$09, $0E, $04, $BD
+5A25 : E6 FE BD FB 	"    "		db	$E6, $FE, $BD, $FB
+5A29 : 30 C6 10 4F 	"0  O"		db	$30, $C6, $10, $4F
+5A2D : 97 EF BD F3 	"    "		db	$97, $EF, $BD, $F3
+5A31 : 02 4C BD F3 	" L  "		db	$02, $4C, $BD, $F3
+5A35 : 02 BD F3 AB 	"    "		db	$02, $BD, $F3, $AB
+5A39 : 28 43 29 42 	"(C)B"		db	$28, $43, $29, $42
+5A3D : 5A F0 21 5A 	"Z !Z"		db	$5A, $F0, $21, $5A
+5A41 : F5 83 19 5B 	"   ["		db	$F5, $83, $19, $5B
+5A45 : F5 80 06 2C 	"   ,"		db	$F5, $80, $06, $2C
+5A49 : 01 28 00 80 	" (  "		db	$01, $28, $00, $80
+5A4D : 02 2C 00 40 	" , @"		db	$02, $2C, $00, $40
+5A51 : 0A 0B 5A FC 	"  Z "		db	$0A, $0B, $5A, $FC
+5A55 : E1 02 02 B1 	"    "		db	$E1, $02, $02, $B1
+5A59 : FF 61 8F E0 	" a  "		db	$FF, $61, $8F, $E0
+5A5D : 5B F5 02 1C 	"[   "		db	$5B, $F5, $02, $1C
+5A61 : 19 03 29 03 	"  ) "		db	$19, $03, $29, $03
+5A65 : 55 F8 70 4A 	"U pJ"		db	$55, $F8, $70, $4A
+5A69 : BD E7 05 6F 	"   o"		db	$BD, $E7, $05, $6F
+5A6D : 00 BD EB A1 	"    "		db	$00, $BD, $EB, $A1
+5A71 : 7F 5A 68 2A 	" Zh*"		db	$7F, $5A, $68, $2A
+5A75 : 72 5A FB 5E 	"rZ ^"		db	$72, $5A, $FB, $5E
+5A79 : 51 FA 04 39 	"Q  9"		db	$51, $FA, $04, $39
+5A7D : 1C 02 5C DA 	"  \ "		db	$1C, $02, $5C, $DA
+5A81 : 2C 1A 02 90 	",   "		db	$2C, $1A, $02, $90
+5A85 : 3B 5A FB FD 	";Z  "		db	$3B, $5A, $FB, $FD
+5A89 : 01 D7 5F 02 	"  _ "		db	$01, $D7, $5F, $02
+5A8D : 9F 40 10 5F 	" @ _"		db	$9F, $40, $10, $5F
+5A91 : 43 2B 5B 15 	"C+[ "		db	$43, $2B, $5B, $15
+5A95 : 03 11 15 05 	"    "		db	$03, $11, $15, $05
+5A99 : 5B 16 03 11 	"[   "		db	$5B, $16, $03, $11
+5A9D : 16 06 03 5A 	"   Z"		db	$16, $06, $03, $5A
+5AA1 : FB F0 F1 12 	"    "		db	$FB, $F0, $F1, $12
+5AA5 : 5A 4F 11 5B 	"ZO ["		db	$5A, $4F, $11, $5B
+5AA9 : 17 09 56 E4 	"  V "		db	$17, $09, $56, $E4
+5AAD : 71 5A F0 06 	"qZ  "		db	$71, $5A, $F0, $06
+5AB1 : 56 E5 24 40 	"V $@"		db	$56, $E5, $24, $40
+5AB5 : 1D 2B 31 47 	" +1G"		db	$1D, $2B, $31, $47
+5AB9 : 53 C0 5E 17 	"S ^ "		db	$53, $C0, $5E, $17
+5ABD : 03 43 2A 03 	" C* "		db	$03, $43, $2A, $03
+5AC1 : 5B FA F6 03 	"[   "		db	$5B, $FA, $F6, $03
+5AC5 : FB FA F6 02 	"    "		db	$FB, $FA, $F6, $02
+5AC9 : F3 47 F1 09 	" G  "		db	$F3, $47, $F1, $09
+5ACD : 10 47 48 CE 	" GH "		db	$10, $47, $48, $CE
+5AD1 : DA D7 BD EA 	"    "		db	$DA, $D7, $BD, $EA
+5AD5 : C4 02 BD F3 	"    "		db	$C4, $02, $BD, $F3
+5AD9 : AB 52 D0 29 	" R )"		db	$AB, $52, $D0, $29
+5ADD : 0E 28 4E 75 	" (Nu"		db	$0E, $28, $4E, $75
+5AE1 : 22 6F 22 7C 	""o"|"		db	$22, $6F, $22, $7C
+5AE5 : 22 7F 75 22 	"" u""		db	$22, $7F, $75, $22
+5AE9 : 70 75 22 71 	"pu"q"		db	$70, $75, $22, $71
+5AED : 22 7D 22 7E 	""}"~"		db	$22, $7D, $22, $7E
+5AF1 : C1 71 74 5B 	" qt["		db	$C1, $71, $74, $5B
+5AF5 : FC E1 7B 08 	"  { "		db	$FC, $E1, $7B, $08
+5AF9 : 5B F7 3B DF 	"[ ; "		db	$5B, $F7, $3B, $DF
+5AFD : 28 0E 8F DD 	"(   "		db	$28, $0E, $8F, $DD
+5B01 : B1 01 26 01 	"  & "		db	$B1, $01, $26, $01
+5B05 : 8F EC 52 05 	"  R "		db	$8F, $EC, $52, $05
+5B09 : 43 2B 31 EA 	"C+1 "		db	$43, $2B, $31, $EA
+5B0D : 94 2F 55 F8 	" /U "		db	$94, $2F, $55, $F8
+5B11 : D0 29 0D 28 	" ) ("		db	$D0, $29, $0D, $28
+5B15 : 4D C0 0C 5B 	"M  ["		db	$4D, $C0, $0C, $5B
+5B19 : F1 02 C0 C0 	"    "		db	$F1, $02, $C0, $C0
+5B1D : 72 2F 0E B0 	"r/  "		db	$72, $2F, $0E, $B0
+5B21 : FF 5B FC E0 	" [  "		db	$FF, $5B, $FC, $E0
+5B25 : 00 F6 31 0A 	"  1 "		db	$00, $F6, $31, $0A
+5B29 : 84 21 9F DA 	" !  "		db	$84, $21, $9F, $DA
+5B2D : 5A 6F 02 29 	"Zo )"		db	$5A, $6F, $02, $29
+5B31 : 4D 55 F8 D0 	"MU  "		db	$4D, $55, $F8, $D0
+5B35 : 9F 98 03 48 	"   H"		db	$9F, $98, $03, $48
+5B39 : CE E5 C3 BD 	"    "		db	$CE, $E5, $C3, $BD
+5B3D : EA C4 5B 56 	"  [V"		db	$EA, $C4, $5B, $56
+5B41 : 29 11 56 51 	") VQ"		db	$29, $11, $56, $51
+5B45 : 10 C0 05 9D 	"    "		db	$10, $C0, $05, $9D
+5B49 : 67 42 0C C0 	"gB  "		db	$67, $42, $0C, $C0
+5B4D : 09 14 01 E4 	"    "		db	$09, $14, $01, $E4
+5B51 : 74 15 01 74 	"t  t"		db	$74, $15, $01, $74
+5B55 : B0 FF 5B FC 	"  [ "		db	$B0, $FF, $5B, $FC
+5B59 : E0 00 F2 03 	"    "		db	$E0, $00, $F2, $03
+5B5D : 48 CE E5 B6 	"H   "		db	$48, $CE, $E5, $B6
+5B61 : BD EA C4 5B 	"   ["		db	$BD, $EA, $C4, $5B
+5B65 : 57 04 11 57 	"W  W"		db	$57, $04, $11, $57
+5B69 : 8F D9 C0 02 	"    "		db	$8F, $D9, $C0, $02
+5B6D : 40 09 13 9D 	"@   "		db	$40, $09, $13, $9D
+5B71 : 3F 03 43 09 	"? C "		db	$3F, $03, $43, $09
+5B75 : 03 5B FB 54 	" [ T"		db	$03, $5B, $FB, $54
+5B79 : 56 0B 80 05 	"V   "		db	$56, $0B, $80, $05
+5B7D : 5B FB 55 57 	"[ UW"		db	$5B, $FB, $55, $57
+5B81 : 04 5A 0A 01 	" Z  "		db	$04, $5A, $0A, $01
+5B85 : EF 40 09 2B 	" @ +"		db	$EF, $40, $09, $2B
+5B89 : C0 02 9D 24 	"   $"		db	$C0, $02, $9D, $24
+5B8D : 5B FA FA F3 	"[   "		db	$5B, $FA, $FA, $F3
+5B91 : 42 0A F3 4F 	"B  O"		db	$42, $0A, $F3, $4F
+5B95 : 31 48 CE 01 	"1H  "		db	$31, $48, $CE, $01
+5B99 : 2E BD F7 7F 	".   "		db	$2E, $BD, $F7, $7F
+5B9D : 52 06 E7 10 	"R   "		db	$52, $06, $E7, $10
+5BA1 : 66 C1 40 72 	"f @r"		db	$66, $C1, $40, $72
+5BA5 : 1F 0B B1 FF 	"    "		db	$1F, $0B, $B1, $FF
+5BA9 : 5A FD E1 20 	"Z   "		db	$5A, $FD, $E1, $20
+5BAD : F6 28 0A 2F 	" ( /"		db	$F6, $28, $0A, $2F
+5BB1 : 4A 73 B1 FF 	"Js  "		db	$4A, $73, $B1, $FF
+5BB5 : 5B FC E1 00 	"[   "		db	$5B, $FC, $E1, $00
+5BB9 : F6 29 4A 56 	" )JV"		db	$F6, $29, $4A, $56
+5BBD : E4 57 10 C3 	" W  "		db	$E4, $57, $10, $C3
+5BC1 : 4E 11 46 56 	"N FV"		db	$4E, $11, $46, $56
+5BC5 : E5 17 03 96 	"    "		db	$E5, $17, $03, $96
+5BC9 : CC BD F3 AB 	"    "		db	$CC, $BD, $F3, $AB
+5BCD : 5A FC D4 00 	"Z   "		db	$5A, $FC, $D4, $00
+5BD1 : 06 5B FC E0 	" [  "		db	$06, $5B, $FC, $E0
+5BD5 : 00 0E F6 10 	"    "		db	$00, $0E, $F6, $10
+5BD9 : 70 90 03 5C 	"p  \"		db	$70, $90, $03, $5C
+5BDD : FA 21 46 86 	" !F "		db	$FA, $21, $46, $86
+5BE1 : FF 97 58 02 	"  X "		db	$FF, $97, $58, $02
+5BE5 : 10 68 52 92 	" hR "		db	$10, $68, $52, $92
+5BE9 : 56 E4 57 53 	"V WS"		db	$56, $E4, $57, $53
+5BED : 80 04 CE 01 	"    "		db	$80, $04, $CE, $01
+5BF1 : 3A BD F7 7F 	":   "		db	$3A, $BD, $F7, $7F
+5BF5 : 96 60 97 EA 	" `  "		db	$96, $60, $97, $EA
+5BF9 : 4F D6 CC 8D 	"O   "		db	$4F, $D6, $CC, $8D
+5BFD : 3A 5A 26 FB 	":Z& "		db	$3A, $5A, $26, $FB
+5C01 : 97 CD C6 92 	"    "		db	$97, $CD, $C6, $92
+5C05 : D7 AA CE DD 	"    "		db	$D7, $AA, $CE, $DD
+5C09 : 32 BD EA 78 	"2  x"		db	$32, $BD, $EA, $78
+5C0D : CE DF 5C BD 	"  \ "		db	$CE, $DF, $5C, $BD
+5C11 : EA C4 BD F3 	"    "		db	$EA, $C4, $BD, $F3
+5C15 : AB CB 00 31 	"   1"		db	$AB, $CB, $00, $31
+5C19 : EA BB 01 93 	"    "		db	$EA, $BB, $01, $93
+5C1D : 20 53 28 93 	" S( "		db	$20, $53, $28, $93
+5C21 : 2A 53 20 5B 	"*S ["		db	$2A, $53, $20, $5B
+5C25 : FD EB E0 F1 	"    "		db	$FD, $EB, $E0, $F1
+5C29 : F9 04 86 92 	"    "		db	$F9, $04, $86, $92
+5C2D : 97 AA CE DC 	"    "		db	$97, $AA, $CE, $DC
+5C31 : 68 BD EA 78 	"h  x"		db	$68, $BD, $EA, $78
+5C35 : 7E F8 D2 37 	"~  7"		db	$7E, $F8, $D2, $37
+5C39 : 36 CE 00 35 	"6  5"		db	$36, $CE, $00, $35
+5C3D : 48 48 BD EE 	"HH  "		db	$48, $48, $BD, $EE
+5C41 : FF DF 9A 58 	"   X"		db	$FF, $DF, $9A, $58
+5C45 : 58 CE 00 35 	"X  5"		db	$58, $CE, $00, $35
+5C49 : BD EF 4D BD 	"  M "		db	$BD, $EF, $4D, $BD
+5C4D : EC 86 16 08 	"    "		db	$EC, $86, $16, $08
+5C51 : DF 9C DE 9A 	"    "		db	$DF, $9C, $DE, $9A
+5C55 : BD EC 86 11 	"    "		db	$BD, $EC, $86, $11
+5C59 : 26 07 08 DF 	"&   "		db	$26, $07, $08, $DF
+5C5D : 9A DE 9C 20 	"    "		db	$9A, $DE, $9C, $20
+5C61 : EA 32 33 24 	" 23$"		db	$EA, $32, $33, $24
+5C65 : 01 17 39 C6 	"  9 "		db	$01, $17, $39, $C6
+5C69 : 20 CE 01 9B 	"    "		db	$20, $CE, $01, $9B
+5C6D : BD EF 53 97 	"  S "		db	$BD, $EF, $53, $97
+5C71 : 0C 96 0C 97 	"    "		db	$0C, $96, $0C, $97
+5C75 : 58 5A BD F3 	"XZ  "		db	$58, $5A, $BD, $F3
+5C79 : AB 52 92 5A 	" R Z"		db	$AB, $52, $92, $5A
+5C7D : FB 69 FC E1 	" i  "		db	$FB, $69, $FC, $E1
+5C81 : 00 0C 10 07 	"    "		db	$00, $0C, $10, $07
+5C85 : E1 61 11 07 	" a  "		db	$E1, $61, $11, $07
+5C89 : 9F 54 61 5C 	" Ta\"		db	$9F, $54, $61, $5C
+5C8D : DC 72 29 4A 	" r)J"		db	$DC, $72, $29, $4A
+5C91 : 55 F8 B0 31 	"U  1"		db	$55, $F8, $B0, $31
+5C95 : 0A 4F BD EB 	" O  "		db	$0A, $4F, $BD, $EB
+5C99 : DB 86 92 97 	"    "		db	$DB, $86, $92, $97
+5C9D : AA CE DD 61 	"   a"		db	$AA, $CE, $DD, $61
+5CA1 : BD EA 78 4B 	"  xK"		db	$BD, $EA, $78, $4B
+5CA5 : 96 0C 8B 99 	"    "		db	$96, $0C, $8B, $99
+5CA9 : 19 97 58 97 	"  X "		db	$19, $97, $58, $97
+5CAD : 0C 5A FC E0 	" Z  "		db	$0C, $5A, $FC, $E0
+5CB1 : 00 0E 11 07 	"    "		db	$00, $0E, $11, $07
+5CB5 : E1 53 20 10 	" S  "		db	$E1, $53, $20, $10
+5CB9 : 07 E0 9F 22 	"   ""		db	$07, $E0, $9F, $22
+5CBD : 53 20 8F E3 	"S   "		db	$53, $20, $8F, $E3
+5CC1 : 52 96 32 F8 	"R 2 "		db	$52, $96, $32, $F8
+5CC5 : EA 55 F8 90 	" U  "		db	$EA, $55, $F8, $90
+5CC9 : 55 F8 B0 10 	"U   "		db	$55, $F8, $B0, $10
+5CCD : 6B 45 7C 00 	"kE| "		db	$6B, $45, $7C, $00
+5CD1 : C9 53 60 10 	" S` "		db	$C9, $53, $60, $10
+5CD5 : 42 4C 86 01 	"BL  "		db	$42, $4C, $86, $01
+5CD9 : 97 AA CE F9 	"    "		db	$97, $AA, $CE, $F9
+5CDD : AB BD EA 78 	"   x"		db	$AB, $BD, $EA, $78
+5CE1 : CC 28 7F BC 	" (  "		db	$CC, $28, $7F, $BC
+5CE5 : FF 5A FE 01 	" Z  "		db	$FF, $5A, $FE, $01
+5CE9 : 01 F8 4F 4F 	"  OO"		db	$01, $F8, $4F, $4F
+5CED : 97 D6 BD F8 	"    "		db	$97, $D6, $BD, $F8
+5CF1 : A4 96 EA 97 	"    "		db	$A4, $96, $EA, $97
+5CF5 : 60 BD EB A1 	"`   "		db	$60, $BD, $EB, $A1
+5CF9 : 44 96 D0 5A 	"D  Z"		db	$44, $96, $D0, $5A
+5CFD : FC 00 E0 1C 	"    "		db	$FC, $00, $E0, $1C
+5D01 : 7F 90 21 BC 	"  ! "		db	$7F, $90, $21, $BC
+5D05 : FF 5B FB FC 	" [  "		db	$FF, $5B, $FB, $FC
+5D09 : E0 03 FD EC 	"    "		db	$E0, $03, $FD, $EC
+5D0D : 30 F2 11 E9 	"0   "		db	$30, $F2, $11, $E9
+5D11 : 6B 4A D6 CD 	"kJ  "		db	$6B, $4A, $D6, $CD
+5D15 : BD F9 CB 7F 	"    "		db	$BD, $F9, $CB, $7F
+5D19 : 00 C9 8E D1 	"    "		db	$00, $C9, $8E, $D1
+5D1D : 53 40 11 07 	"S@  "		db	$53, $40, $11, $07
+5D21 : 31 0A 8E B3 	"1   "		db	$31, $0A, $8E, $B3
+5D25 : C0 01 5A F8 	"  Z "		db	$C0, $01, $5A, $F8
+5D29 : 2C 02 C0 00 	",   "		db	$2C, $02, $C0, $00
+5D2D : A6 27 A6 33 	" ' 3"		db	$A6, $27, $A6, $33
+5D31 : 02 BD E6 00 	"    "		db	$02, $BD, $E6, $00
+5D35 : C6 40 CE 00 	" @  "		db	$C6, $40, $CE, $00
+5D39 : 48 4F 36 91 	"HO6 "		db	$48, $4F, $36, $91
+5D3D : CD 27 05 96 	" '  "		db	$CD, $27, $05, $96
+5D41 : 0B BD D8 70 	"   p"		db	$0B, $BD, $D8, $70
+5D45 : 08 08 08 08 	"    "		db	$08, $08, $08, $08
+5D49 : 32 4C 81 04 	"2L  "		db	$32, $4C, $81, $04
+5D4D : 26 EC BD EA 	"&   "		db	$26, $EC, $BD, $EA
+5D51 : 2F 04 54 25 	"/ T%"		db	$2F, $04, $54, $25
+5D55 : DF 20 DF BD 	"    "		db	$DF, $20, $DF, $BD
+5D59 : F3 AB C8 00 	"    "		db	$F3, $AB, $C8, $00
+5D5D : 56 E5 17 03 	"V   "		db	$56, $E5, $17, $03
+5D61 : CE DD 58 BD 	"  X "		db	$CE, $DD, $58, $BD
+5D65 : EA C4 BD F3 	"    "		db	$EA, $C4, $BD, $F3
+5D69 : AB 80 07 78 	"   x"		db	$AB, $80, $07, $78
+5D6D : 5A F8 2C FB 	"Z , "		db	$5A, $F8, $2C, $FB
+5D71 : 53 50 76 5A 	"SPvZ"		db	$53, $50, $76, $5A
+5D75 : F8 2C F4 5B 	" , ["		db	$F8, $2C, $F4, $5B
+5D79 : F8 10 F7 31 	"   1"		db	$F8, $10, $F7, $31
+5D7D : 45 8F F1 43 	"E  C"		db	$45, $8F, $F1, $43
+5D81 : 0B 52 01 45 	" R E"		db	$0B, $52, $01, $45
+5D85 : 16 84 FC 72 	"   r"		db	$16, $84, $FC, $72
+5D89 : 5A F9 37 E0 	"Z 7 "		db	$5A, $F9, $37, $E0
+5D8D : FA B0 28 5B 	"  (["		db	$FA, $B0, $28, $5B
+5D91 : F8 E1 12 45 	"   E"		db	$F8, $E1, $12, $45
+5D95 : 16 54 54 5A 	" TTZ"		db	$16, $54, $54, $5A
+5D99 : FB E0 FA 68 	"   h"		db	$FB, $E0, $FA, $68
+5D9D : E1 07 48 CE 	"  H "		db	$E1, $07, $48, $CE
+5DA1 : DE 85 BD EA 	"    "		db	$DE, $85, $BD, $EA
+5DA5 : C4 B0 D8 59 	"   Y"		db	$C4, $B0, $D8, $59
+5DA9 : FA FA F8 E0 	"    "		db	$FA, $FA, $F8, $E0
+5DAD : F8 F9 E0 01 	"    "		db	$F8, $F9, $E0, $01
+5DB1 : F8 F9 E0 02 	"    "		db	$F8, $F9, $E0, $02
+5DB5 : DE 37 1A 04 	" 7  "		db	$DE, $37, $1A, $04
+5DB9 : B0 37 14 00 	" 7  "		db	$B0, $37, $14, $00
+5DBD : 72 4B 36 80 	"rK6 "		db	$72, $4B, $36, $80
+5DC1 : 37 16 44 44 	"7 DD"		db	$37, $16, $44, $44
+5DC5 : BD F1 EE 4C 	"   L"		db	$BD, $F1, $EE, $4C
+5DC9 : 8A 80 BD F1 	"    "		db	$8A, $80, $BD, $F1
+5DCD : A7 8A C0 36 	"   6"		db	$A7, $8A, $C0, $36
+5DD1 : CB 29 15 01 	" )  "		db	$CB, $29, $15, $01
+5DD5 : 40 0E 0C 52 	"@  R"		db	$40, $0E, $0C, $52
+5DD9 : 85 44 8B 4A 	" D J"		db	$85, $44, $8B, $4A
+5DDD : C1 0E 5B 68 	"  [h"		db	$C1, $0E, $5B, $68
+5DE1 : 02 91 5A 16 	"  Z "		db	$02, $91, $5A, $16
+5DE5 : 00 4B 97 EE 	" K  "		db	$00, $4B, $97, $EE
+5DE9 : 32 BD F1 C7 	"2   "		db	$32, $BD, $F1, $C7
+5DED : 36 96 EE 72 	"6  r"		db	$36, $96, $EE, $72
+5DF1 : B1 FF 5B FC 	"  [ "		db	$B1, $FF, $5B, $FC
+5DF5 : E1 00 EC 15 	"    "		db	$E1, $00, $EC, $15
+5DF9 : 00 4F 32 D6 	" O2 "		db	$00, $4F, $32, $D6
+5DFD : 1D 2B 03 BD 	" +  "		db	$1D, $2B, $03, $BD
+5E01 : F1 A7 8B 9B 	"    "		db	$F1, $A7, $8B, $9B
+5E05 : BD EB 23 5B 	"  #["		db	$BD, $EB, $23, $5B
+5E09 : 68 2D 91 3F 	"h- ?"		db	$68, $2D, $91, $3F
+5E0D : B0 AF 14 00 	"    "		db	$B0, $AF, $14, $00
+5E11 : 53 28 5B FA 	"S([ "		db	$53, $28, $5B, $FA
+5E15 : F6 05 FA F3 	"    "		db	$F6, $05, $FA, $F3
+5E19 : FE F2 F8 C0 	"    "		db	$FE, $F2, $F8, $C0
+5E1D : F3 52 0C 10 	" R  "		db	$F3, $52, $0C, $10
+5E21 : 52 C0 06 A0 	"R   "		db	$52, $C0, $06, $A0
+5E25 : 40 C0 08 A0 	"@   "		db	$40, $C0, $08, $A0
+5E29 : 3C 10 15 C0 	"<   "		db	$3C, $10, $15, $C0
+5E2D : 03 9A 81 53 	"   S"		db	$03, $9A, $81, $53
+5E31 : 28 46 32 BD 	"(F2 "		db	$28, $46, $32, $BD
+5E35 : F1 5B 03 5A 	" [ Z"		db	$F1, $5B, $03, $5A
+5E39 : FB 4A FC D6 	" J  "		db	$FB, $4A, $FC, $D6
+5E3D : 01 33 5B FA 	" 3[ "		db	$01, $33, $5B, $FA
+5E41 : F6 06 F6 07 	"    "		db	$F6, $06, $F6, $07
+5E45 : 06 C0 06 A0 	"    "		db	$06, $C0, $06, $A0
+5E49 : 1C 80 0B 5B 	"   ["		db	$1C, $80, $0B, $5B
+5E4D : FA F6 08 F6 	"    "		db	$FA, $F6, $08, $F6
+5E51 : 09 D9 C0 08 	"    "		db	$09, $D9, $C0, $08
+5E55 : A0 0F C0 16 	"    "		db	$A0, $0F, $C0, $16
+5E59 : 5A 4B 02 C0 	"ZK  "		db	$5A, $4B, $02, $C0
+5E5D : 28 14 00 10 	"(   "		db	$28, $14, $00, $10
+5E61 : 4A 12 4B 8F 	"J K "		db	$4A, $12, $4B, $8F
+5E65 : C6 8D 01 4C 	"   L"		db	$C6, $8D, $01, $4C
+5E69 : CE DE DD BD 	"    "		db	$CE, $DE, $DD, $BD
+5E6D : EA C4 7E F1 	"  ~ "		db	$EA, $C4, $7E, $F1
+5E71 : A7 5B FA FA 	" [  "		db	$A7, $5B, $FA, $FA
+5E75 : FA F6 06 F6 	"    "		db	$FA, $F6, $06, $F6
+5E79 : 07 F6 08 F6 	"    "		db	$07, $F6, $08, $F6
+5E7D : 09 AD C0 06 	"    "		db	$09, $AD, $C0, $06
+5E81 : AF E3 8F CE 	"    "		db	$AF, $E3, $8F, $CE
+5E85 : BD F3 AB 52 	"   R"		db	$BD, $F3, $AB, $52
+5E89 : C0 14 00 B0 	"    "		db	$C0, $14, $00, $B0
+5E8D : 01 14 00 48 	"   H"		db	$01, $14, $00, $48
+5E91 : F6 01 9A C4 	"    "		db	$F6, $01, $9A, $C4
+5E95 : 0F 58 4B D7 	" XK "		db	$0F, $58, $4B, $D7
+5E99 : 9A CB 16 37 	"   7"		db	$9A, $CB, $16, $37
+5E9D : D6 9A CB 0D 	"    "		db	$D6, $9A, $CB, $0D
+5EA1 : 61 5B E0 33 	"a[ 3"		db	$61, $5B, $E0, $33
+5EA5 : 45 36 44 44 	"E6DD"		db	$45, $36, $44, $44
+5EA9 : 14 00 F8 61 	"   a"		db	$14, $00, $F8, $61
+5EAD : 46 D7 EE 16 	"F   "		db	$46, $D7, $EE, $16
+5EB1 : 32 5B E0 23 	"2[ #"		db	$32, $5B, $E0, $23
+5EB5 : 15 01 44 33 	"  D3"		db	$15, $01, $44, $33
+5EB9 : 5A 5A FC E1 	"ZZ  "		db	$5A, $5A, $FC, $E1
+5EBD : 00 0D 45 37 	"  E7"		db	$00, $0D, $45, $37
+5EC1 : D6 EE 5A FD 	"  Z "		db	$D6, $EE, $5A, $FD
+5EC5 : 05 E1 D9 B1 	"    "		db	$05, $E1, $D9, $B1
+5EC9 : FF 8F D5 15 	"    "		db	$FF, $8F, $D5, $15
+5ECD : 00 4B 36 44 	" K6D"		db	$00, $4B, $36, $44
+5ED1 : 44 8B 51 BD 	"D Q "		db	$44, $8B, $51, $BD
+5ED5 : EB 23 32 B0 	" #2 "		db	$EB, $23, $32, $B0
+5ED9 : FF 15 00 03 	"    "		db	$FF, $15, $00, $03
+5EDD : BD F3 AB 52 	"   R"		db	$BD, $F3, $AB, $52
+5EE1 : 05 71 5A FE 	" qZ "		db	$05, $71, $5A, $FE
+5EE5 : F2 F0 80 F9 	"    "		db	$F2, $F0, $80, $F9
+5EE9 : 5A F1 01 E6 	"Z   "		db	$5A, $F1, $01, $E6
+5EED : 04 C6 11 8A 	"    "		db	$04, $C6, $11, $8A
+5EF1 : C0 BD F2 08 	"    "		db	$C0, $BD, $F2, $08
+5EF5 : 8B 4A BD F1 	" J  "		db	$8B, $4A, $BD, $F1
+5EF9 : 7E 8B 76 BD 	"~ v "		db	$7E, $8B, $76, $BD
+5EFD : F1 A7 80 36 	"   6"		db	$F1, $A7, $80, $36
+5F01 : BD F3 AB 24 	"   $"		db	$BD, $F3, $AB, $24
+5F05 : 00 75 25 00 	" u% "		db	$00, $75, $25, $00
+5F09 : B0 36 5A FA 	" 6Z "		db	$B0, $36, $5A, $FA
+5F0D : FD 88 E0 6F 	"   o"		db	$FD, $88, $E0, $6F
+5F11 : 27 04 BD F1 	"'   "		db	$27, $04, $BD, $F1
+5F15 : EE BD EA 2F 	"   /"		db	$EE, $BD, $EA, $2F
+5F19 : 05 BD F2 7C 	"   |"		db	$05, $BD, $F2, $7C
+5F1D : BD EA 2F 05 	"  / "		db	$BD, $EA, $2F, $05
+5F21 : BD F2 7C BD 	"  | "		db	$BD, $F2, $7C, $BD
+5F25 : EA 2F 05 5A 	" / Z"		db	$EA, $2F, $05, $5A
+5F29 : 26 C5 BD F3 	"&   "		db	$26, $C5, $BD, $F3
+5F2D : AB 5A 6F 08 	" Zo "		db	$AB, $5A, $6F, $08
+5F31 : 49 8B 8A BD 	"I   "		db	$49, $8B, $8A, $BD
+5F35 : F1 83 8B B6 	"    "		db	$F1, $83, $8B, $B6
+5F39 : 45 BD F1 A7 	"E   "		db	$45, $BD, $F1, $A7
+5F3D : 03 5A FB FC 	" Z  "		db	$03, $5A, $FB, $FC
+5F41 : D5 00 F1 06 	"    "		db	$D5, $00, $F1, $06
+5F45 : 31 EE 45 7C 	"1 E|"		db	$31, $EE, $45, $7C
+5F49 : 00 EF 02 49 	"   I"		db	$00, $EF, $02, $49
+5F4D : D6 EF 27 01 	"  ' "		db	$D6, $EF, $27, $01
+5F51 : 5A D7 EF 5B 	"Z  ["		db	$5A, $D7, $EF, $5B
+5F55 : FC E1 00 02 	"    "		db	$FC, $E1, $00, $02
+5F59 : 31 0E 02 BD 	"1   "		db	$31, $0E, $02, $BD
+5F5D : F3 AB 52 B6 	"  R "		db	$F3, $AB, $52, $B6
+5F61 : 28 4D 46 86 	"(MF "		db	$28, $4D, $46, $86
+5F65 : 02 97 F0 4E 	"   N"		db	$02, $97, $F0, $4E
+5F69 : 86 B6 97 AA 	"    "		db	$86, $B6, $97, $AA
+5F6D : 86 40 CE DF 	" @  "		db	$86, $40, $CE, $DF
+5F71 : 7B BD EA 78 	"{  x"		db	$7B, $BD, $EA, $78
+5F75 : 53 30 B1 01 	"S0  "		db	$53, $30, $B1, $01
+5F79 : 8F ED CE DF 	"    "		db	$8F, $ED, $CE, $DF
+5F7D : CB 97 EE 8D 	"    "		db	$CB, $97, $EE, $8D
+5F81 : 32 08 4D 2B 	"2 M+"		db	$32, $08, $4D, $2B
+5F85 : FA 96 F0 97 	"    "		db	$FA, $96, $F0, $97
+5F89 : B7 96 EE BD 	"    "		db	$B7, $96, $EE, $BD
+5F8D : EA 24 8C DF 	" $  "		db	$EA, $24, $8C, $DF
+5F91 : FF 26 EA 7E 	" & ~"		db	$FF, $26, $EA, $7E
+5F95 : EA 67 CE DF 	" g  "		db	$EA, $67, $CE, $DF
+5F99 : FE 97 EE 8D 	"    "		db	$FE, $97, $EE, $8D
+5F9D : 16 09 6D 00 	"  m "		db	$16, $09, $6D, $00
+5FA1 : 2B F9 96 F0 	"+   "		db	$2B, $F9, $96, $F0
+5FA5 : 97 B7 96 EE 	"    "		db	$97, $B7, $96, $EE
+5FA9 : BD EA 24 8C 	"  $ "		db	$BD, $EA, $24, $8C
+5FAD : DF CA 26 E9 	"  & "		db	$DF, $CA, $26, $E9
+5FB1 : 7E EA 67 A6 	"~ g "		db	$7E, $EA, $67, $A6
+5FB5 : 00 DF 9E 36 	"   6"		db	$00, $DF, $9E, $36
+5FB9 : 84 3F 9B EE 	" ?  "		db	$84, $3F, $9B, $EE
+5FBD : C5 01 26 05 	"  & "		db	$C5, $01, $26, $05
+5FC1 : BD F1 83 20 	"    "		db	$BD, $F1, $83, $20
+5FC5 : 03 BD F1 7E 	"   ~"		db	$03, $BD, $F1, $7E
+5FC9 : 32 39 2E 2F 	"29./"		db	$32, $39, $2E, $2F
+5FCD : 30 8E 8F BC 	"0   "		db	$30, $8E, $8F, $BC
+5FD1 : BF 31 BD 3E 	" 1 >"		db	$BF, $31, $BD, $3E
+5FD5 : 32 33 B4 8A 	"23  "		db	$32, $33, $B4, $8A
+5FD9 : 0B 35 36 B7 	" 56 "		db	$0B, $35, $36, $B7
+5FDD : 9B 9F 88 09 	"    "		db	$9B, $9F, $88, $09
+5FE1 : B8 18 B9 19 	"    "		db	$B8, $18, $B9, $19
+5FE5 : BA 9A 0D 3B 	"   ;"		db	$BA, $9A, $0D, $3B
+5FE9 : 1C 9D 10 97 	"    "		db	$1C, $9D, $10, $97
+5FED : 1E 8C 11 15 	"    "		db	$1E, $8C, $11, $15
+5FF1 : 16 A0 24 A1 	"  $ "		db	$16, $A0, $24, $A1
+5FF5 : 25 A2 A6 27 	"%  '"		db	$25, $A2, $A6, $27
+5FF9 : A8 12 A3 13 	"    "		db	$A8, $12, $A3, $13
+5FFD : A9 14 28 	"  ("		db	$A9, $14, $28
+
+;--------------------------------------------------------------
+Symbol table
+============
+
+Value	Type	Name
+-----	----	----
+0000	 04	sci_entry
+0000	 04	tof_entry
+0000	 04	ocf_entry
+0000	 04	icf_entry
+0000	 04	int_entry
+0000	 04	swi_entry
+0000	 04	nmi_entry
+0000	 04	reset
+0000	 04	u16_13ram
+5800	 04	ic26
+5800	 04	u26rom
+6000	 04	u14rom
+6800	 04	u20rom
+7000	 04	u17rom
+FFF0	 04	sci_vector
+FFF2	 04	tof_vector
+FFF4	 04	ocf_vector
+FFF6	 04	icf_vector
+FFF8	 04	irq_vector
+FFFA	 04	swi_vector
+FFFC	 04	nmi_vector
+FFFE	 04	res_vector
+
+Number of symbols:			23
+
+;--------------------------------------------------------------

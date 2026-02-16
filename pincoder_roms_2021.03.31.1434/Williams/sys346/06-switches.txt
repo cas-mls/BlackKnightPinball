@@ -1,0 +1,103 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+06-switches (Williams sys346)
+
+
+
+PURPOSE
+==============================================================================================
+
+This test will show whether the CPU can sense all switches found in the following list:
+
+    * Switches in the switch matrix (Numbered 01-64). See your game's documentation to
+    identify which switches are included in this matrix.
+
+    * DIP switches (Numbered 65-80: Top Bank Top switch, to Bottom Bank Bottom switch) on CPU
+    board.
+
+    * Coin door switches: ADVANCE (Number 81), AUTO_UPDN (Number 82)
+
+    NOTE: The HIGH SCORE RESET switch on the coin door is included in the switch matrix.
+
+All other switches in the game - including the special solenoid switches are not wired to a
+PIA on the driver board and therefore cannot be sensed by software.
+
+
+
+PROCEDURE
+==============================================================================================
+
+Before running this test ensure the following:
+
+    * The ball has been removed from the outhole, and
+
+    * The dip switches all are all off, and
+
+    * The COMMAND ENTER switch is not being pressed
+
+    * The AUTO_UP_DOWN switch is down.
+
+When you then power on this test the following values will be shown on the displays:
+
+    * MATCH: The total number of closed switches found.
+
+    * P1-P4: The switch numbers of the first 12 closed switches found.
+
+If there are more than 12 closed switches found you will need to open some of the ones shown
+in order to reveal the other closures.
+
+
+
+EXPECTED RESULTS
+==============================================================================================
+
+If you have started out this test as outlined above then all switches should be open and
+therefore the MATCH display should read "00". No other numbers will be shown.
+
+Closing switches by hand should reveal their switch number on the P1-P4 displays, and the
+MATCH number should indicate the total number of closed switches sensed.
+
+
+
+
+ABOUT THE DIP SWITCHES (and PIA1)
+==============================================================================================
+
+In order for the DIP switch settings to be picked up by the CPU, the COMMAND ENTER pushbutton
+switch must be pressed and held down. This is by design in the circuitry.
+
+Test all DIP switches. If there are "dead" or "stuck" switches, Trace signals on SW2, PIA1,
+IC2, and IC6 to determine where the fault is.
+
+Essentially, PIA1 sets CA2 LOW while sending rotating signals out on pins PA0-PA3 and looks
+for incoming signals on PA4-PA7. IC2 and IC6 deal with things in between. IC6 is also used for
+the DISPLAYS, so if you are also having trouble with DISPLAYS then it is likely IC6 that is
+causing the problem.
+
+
+
+ABOUT THE MATRIX SWITCHES (and PIA2)
+==============================================================================================
+
+
+Check any switches shown for unintended shorts. If you are seeing multiple switches shown, and
+they are numbered (01-64), cross reference them to the switch matrix for your game and see if
+they form a single column or row in the matrix. If so this could indicate a stuck/bad pin on
+PIA2, IC15, IC16, IC17, or IC18.
+
+Use a logic probe with this test to ensure that signals on PIA2 are working. Trace the
+signal along the SWITCH MATRIX DRIVES from PIA2 PBx pins, through IC17 and IC18, and onto to
+2J2. These 8 signals will continually round-robin pulse.
+
+If the outputs are working and a switch is closed a signal will be seen on the SWITCH MATRIX
+INPUTS. Follow the signal along from 2J3, through to IC15 and IC16 and onto PIA2 PAx
+
+The SWITCH MATRIX DRIVES are associated in the switch matrix in terms of columns, and the
+SWITCH MATRIX inputs are associated as rows. Therefore, if you have an entirely dead or always
+closed column, the problem is in the SWITCH MATRIX DRIVES. If you have a problem with an
+entire row, the problem is with the SWITCH MATRIX INPUTS.
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

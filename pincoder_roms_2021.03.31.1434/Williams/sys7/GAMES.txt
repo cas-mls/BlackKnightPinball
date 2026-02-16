@@ -1,0 +1,29 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+GAMES
+==============================================================================================
+
+These ROMs are for use in the following systems made by Williams:
+
+    * System 7
+
+The following games were built using those systems:
+
+    * Barracora,Black Knight,Cosmic Gunfight,Defender Pinball,Firepower II,Hyperball,Joust
+    Pinball,Jungle Lord,Laser Cue,Pharoah,Solar Fire,Time Fantasy,Varkon,Warlok
+
+
+!!!
+!!!   WARNING: DO NOT USE THESE ROMS IN ANY OTHER GAMES
+!!!
+
+
+
+    NOTE: Hyperball is not fully supported in this version. Specifically, the displays
+    ROM does not test the alphanumeric display in the playfield. However, I now have a
+    working hyperball board set and will release an update in the future that contains full
+    support for this machine. Hint: The sound test ROMS have already been verified to work in
+    Hyperball. I have not yet verified any other test ROMS in Hyperball.
+
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

@@ -1,0 +1,127 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+10-solenoids (Williams sys6a)
+
+
+
+PURPOSE
+==============================================================================================
+
+
+!!!
+!!!   WARNING: Be prepared to immediately power off your machine once this ROM is booted: If
+!!!   you have any SHORTED TRANSISTORS on the driver board they will immediately activate the
+!!!   corresponding solenoid. THIS ROM HAS NO POWER TO SHUT THEM OFF. If they stay on too long
+!!!   they might overheat/melt/burnout.
+!!!
+
+This ROM allows you to manually fire all three kinds of solenoids on your machine.
+
+    NOTE: Your game may not use all of the solenoids possible. Consult the owners manual
+    and/or the schematics for your game to determine which solenoids are present in your
+    system.
+
+
+    NOTE: USING THIS ROM TO TEST SOUND: This rom is NOT ideal for testing the sound card, as
+    the five "solenoid" lines that send information to the sound card can only be activated
+    one at a time with this ROM.  While you may hear sounds from the sound card when using
+    this ROM, you wont hear ALL sounds that can be produced.  Use the "sounds" ROM for testing
+    the sound card.
+
+Upon power up this ROM enables:
+
+    * The Switch Triggered Solenoids (ST1-ST6) - so they can be tested, and
+
+    * Energizes the flipper relay - to enable the flippers.
+
+
+
+PROCEDURE
+==============================================================================================
+
+Review the sections below to test the different types of solenoids on your game:
+
+    * CPU Triggered Solenoids (01-16)
+
+    * Switch Triggered Solenoids (17-22)
+
+    * Flipper Triggered Solenoids (left and right flippers)
+
+    NOTE: All solenoids (with the exception of the flipper solenoids) are powered from the
+    driver board. When you turn the machine on all solenoids should be relaxed (off). If
+    there are any solenoids that are stuck ON, then you likely have a SHORTED TRANSISTOR
+    on the driver board.  If any solenoids DO NOT fire, you likely have an OPEN TRANSISTOR
+    on the driver board.  Replace any OPEN/SHORTED TRANSISTORS and repeat the test. If the
+    transistors test OK then look at the signals coming from PIA4 through the related ICs to
+    the transistors.
+
+
+
+
+CPU TRIGGERED SOLENOIDS (01-16)
+==============================================================================================
+
+
+This test starts out with solenoid #01.
+
+The Hold Time (Range: 10-200) is shown in the PLAYER 1 display and starts out at 10. Pressing
+the CREDIT button increases the hold time by 10. The number is simply a count, not a
+representation of time lapsed. Some Solenoids require a longer hold time to be activated
+successfully, and some require less. This setting allows you to compensate for this.
+
+For example, the MAGNET LAMPS on Gorgar are actually connected to the solenoid circuitry and
+since they are bulbs, they take longer to fully light up than a typical solenoid does. The
+sound card is also activated through solenoid circuitry, and can be triggered using a shorter
+hold time.
+
+To change the solenoid number (shown in MATCH display) press the ADVANCE button. Depending on
+the AUTO_UPDN switch, The solenoid number will increase or decrease.
+
+To fire the solenoid, press the HIGH SCORE RESET button (located on the coin door). If your
+game does not have the HIGH SCORE RESET button you can also fire a solenoid by setting switch
+DIP_01 (MPU BOARD, top switch, top bank) to ON and press the COMMAND ENTER button.
+
+
+
+
+SWITCH TRIGGERED SOLENOIDS (17-22)
+==============================================================================================
+
+
+To fire a solenoid just activate the corresponding switch.
+
+
+
+Flipper Triggered Solenoids (left and right flippers)
+==============================================================================================
+
+
+To fire a flipper solenoid, press the corresponding flipper button.
+
+    NOTE: These two solenoids are wired directly for power and do NOT use transistors on the
+    driver board for activating. However, they ARE enabled by the flipper relay, so make sure
+    the relay is energizing upon power up. If not, test the transistor circuitry for the
+    flipper relay on the driver board.
+
+
+
+
+EXPECTED RESULTS
+==============================================================================================
+
+You should be able to manually activate each of the solenoids in your game. If you get more
+than one solenoid activating at a time (or a solenoid doesnt activate at all) you may have bad
+driver transistors or logic chips on the driver board.
+
+For example, in my case, on my Black Knight, it was the logic chips IC6 and IC8. The RIGHT
+KICKER and JET BUMPER would come on a few moments after a game was started, and STAY ON
+(causing the fuse to blow). As it turned out, IC8 (7402 NOR GATE) was pushing voltage out of
+one of its input pins and had fried part of IC6 (7408 AND GATE). This was causing the base of
+Q3 and Q5 to float, which in turn activated Q4 and Q6, and the right kicker and jet bumper are
+connected to those respectively.  Replacing those chips with sockets and fresh chips corrected
+the problem.
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

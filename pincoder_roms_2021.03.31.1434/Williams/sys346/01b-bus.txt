@@ -1,0 +1,204 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+01b-bus (Williams sys346)
+
+
+
+PURPOSE
+==============================================================================================
+
+You should only need to run this test if the "leds" test fails.
+
+You will need schematics for the MPU board, a volt meter, and a logic probe. You can run this
+test while the MPU and driver boards are installed in the game, or while they're out on the
+bench and connected to adequate power.
+
+In the following descriptions, "pulses" means the signal alternates between HIGH and low.
+
+This test outlines what normally happens upon first power up and helps identify the possible
+reasons why your board fails the "leds" test:
+
+    1) Insufficient Power
+
+    2) Faulty reset circuit
+
+    3) Faulty PIA chip(s) causing interference to the reset signal
+
+    4) Faulty CPU chip or CR1 crystal
+
+    5) Faulty chip(s) causing interference to one or more of the ADDRESS and DATA lines
+
+Once the CPU has successfully executed the code in this ROM, the address and data lines
+will go quiet (stop pulsing) and allow you to check the signals on the pins of the CPU chip
+while it still has power to it. You can compare your results with the results shown in this
+document.
+
+
+
+PROCEDURE
+==============================================================================================
+
+
+    1) Check Power. The CPU needs proper power to function. Power up this test and confirm
+    4.75 - 5.1 volts on CPU pins VCC1, VCC2, and good grounds on GND1, GND2. Trace down any
+    power problems and fix them before proceeding.  When testing with the MPU and driver
+    boards on the bench you can use a cheap 400w ATX power supply to power the boards. Ensure
+    that you connect as many of the GND, 12V, and 5V pins of 1J2 as you can to allow more
+    current flow. If you are testing with the driver board connected you should also supply
+    power to 2J8 in the same fashion. You NEED the 12v power in order for the RESET circuit to
+    function.
+
+    2) Check reset circuit. Once you have good power, make sure your reset signal (TP8) starts
+    LOW then goes high about half a second after power up. It must REMAIN a STEADY HIGH after
+    that. Test with your logic probe set to PULSE. If it stays low or does not stay high after
+    half a second you may have an issue with the reset circuit (check 555/556 timer chip and
+    related components), or you may have a bad chip dragging it down. If the reset circuit
+    seems ok and you suspect a bad chip dragging the signal down, complete the remainder of
+    this test to help troubleshoot.
+
+    3) Verify signals on the CPU chip as per the next section.
+
+
+
+EXPECTED RESULTS
+==============================================================================================
+
+Upon normal power up, the LEDs on the MPU board come on and, with system 7, zero is shown on
+the LED segment display. This occurs before the CPU starts executing any instructions. The
+LEDs and segment display will only go blank after the CPU has executed instructions to
+initialize PIA1. In the case of this ROM, there are no instructions to do so.
+
+
+    NOTE: The fact that both LEDs are on (and the segment display shows 0 on system 7) means
+    nothing really. It is not the result of some test being performed in any of the pincoder
+    ROMs, and I would also suspect the same is true for the Williams ROMs. It is just how IC33
+    and IC34 power up in this circuit.
+
+
+About half a second after power up, the reset circuit finishes its job and stops holding
+the reset line low. This allows the pull up resistor (R30) to pull the reset signal high. A
+high signal tells the CPU to come out from reset mode and start executing code from the
+beginning. It pulls code from IC17 and starts executing it. In the case of this test ROM,
+the CPU is instructed to simply read a single value from address 0000 and then go into a
+wait state. In a wait state, the CPU stops pulling instructions from IC17 and waits until
+an Interrupt Request signal is seen on Pin 4 (IRQ). In the case of this test ROM, it is
+instructed to IGNORE the IRQ. This means it will wait forever in this state while it has
+power.
+
+At this point you can test the pins on the CPU chip and compare them to the notes that
+follow. You should NOT be seeing pulses on the address and data bus lines. If you are, the CPU
+is likely continually resetting and trying to re-run the code in the test ROM.
+
+If this is the case, your board could be continually resetting because of:
+
+    1) Insufficient power. You may not have adequate power.
+
+    2) Faulty reset circuit: The reset circuit is not behaving as described above.
+
+    3) Faulty PIA chip(s): It is possible that a (bad) PIA chip is interfering with the reset
+    signal. The reset pin on a PIA is actually an INPUT pin and therefore cannot pull down the
+    reset signal by design. However, it is possible that a bad PIA chip could drag it down
+    anyway. The only way you can test for a PIA chip behaving in this way is to remove it from
+    the board. If the PIA is soldered directly on the board use a proper heat gun to remove it
+    and then solder a socket in its place. If you remove the chip without damaging it, you can
+    then place it back into the socket as needed.
+
+If your board is NOT continually resetting proceed to check items 4 and 5:
+
+Number 4: Check for faulty CPU chip or CR1 crystal: Pulses on pin 37 mean the CPU is
+responding to CR1 and is functioning enough to run code (it should pulse even while in a wait
+state). If pin 37 does not pulse then replace CPU1. If a new chip still brings you here, then
+replace CR1 (the crystal) and try again. In my experience, the odds of CPU chip failure is
+greater than that of the crystal.
+
+    NOTE: Finding pulses on pin 37 does not completely certify the CPU chip, there are other
+    pincoder test ROMs to run that will do that.
+
+
+Number 5: If the CPU is responding to CR1 and you still have a non-working board then you
+should determine if the address and data bus lines are being interfered with by any of
+the chips connected to those lines (they shouldn't be). The "transceivers" test may be of
+help. Aside from that unfortunately, the only direction to go from there is to pull the chips
+that are connected to the address and data bus from the circuit boards and try with new ones.
+
+The following is a listing of CPU pins and the signals you should see on them while this test
+is running on a working board.
+
+    NOTE: I'm not certain yet why A1 and A2 are being held low, but this is how my working
+    machine behaves so yours might do the same, even for different address lines.
+
+
+  | System 7, 6 6802/6808    System 4 6800
+  | =====================    ==========================
+  | pin 1 GND1: low          pin 1  GND1: low
+  | pin 2 HALT: HIGH         pin 2  HALT: HIGH
+  | pin 3   MR: HIGH         pin 3   CLK: pulses
+  | pin 4  IRQ: *NOTE_6      pin 4   IRQ: *NOTE_6
+  | pin 5  VMA: low          pin 5   VMA: low
+  | pin 6  NMI: HIGH         pin 6   NMI: HIGH
+  | pin 7   NC: Not used     pin 7    BA: LOW
+  | pin 8 VCC1: HIGH         pin 8  VCC1: HIGH
+  | pin 9   A0: HIGH         pin 9    A0: HIGH
+  | pin 10  A1: low          pin 10   A1: low
+  | pin 11  A2: low          pin 11   A2: low
+  | pin 12  A3: HIGH         pin 12   A3: HIGH
+  | pin 13  A4: HIGH         pin 13   A4: HIGH
+  | pin 14  A5: HIGH         pin 14   A5: HIGH
+  | pin 15  A6: HIGH         pin 15   A6: HIGH
+  | pin 16  A7: HIGH         pin 16   A7: HIGH
+  | pin 17  A8: HIGH         pin 17   A8: HIGH
+  | pin 18  A9: HIGH         pin 18   A9: HIGH
+  | pin 19 A10: HIGH         pin 19  A10: HIGH
+  | pin 20 A11: HIGH         pin 20  A11: HIGH
+  | 
+  | pin 21 GND2: low         pin 21 GND2: low
+  | pin 22  A12: HIGH        pin 22  A12: HIGH
+  | pin 23  A13: HIGH        pin 23  A13: HIGH
+  | pin 24  A14: HIGH        pin 24  A14: HIGH
+  | pin 25  A15: HIGH        pin 25  A15: HIGH
+  | pin 26   D7: HIGH        pin 26   D7: HIGH
+  | pin 27   D6: HIGH        pin 27   D6: HIGH
+  | pin 28   D5: HIGH        pin 28   D5: HIGH
+  | pin 29   D4: HIGH        pin 29   D4: HIGH
+  | pin 30   D3: HIGH        pin 30   D3: HIGH
+  | pin 31   D2: HIGH        pin 31   D2: HIGH
+  | pin 32   D1: HIGH        pin 32   D1: HIGH
+  | pin 33   D0: HIGH        pin 33   D0: HIGH
+  | pin 34   RW: *NOTE_1     pin 34   RW: HIGH
+  | pin 35 VCC2: HIGH        pin 34   NC: Tied to GND on system 4
+  | pin 36  A12: HIGH        pin 36  A12: HIGH
+  | pin 37 *NOTE_2           pin 37 *NOTE_2
+  | pin 38 *NOTE_3           pin 38 *NOTE_3
+  | pin 39 *NOTE_4           pin 39 *NOTE_4
+  | pin 40 *NOTE_5           pin 40 *NOTE_5
+  | 
+  | NOTE_1:      6802 CPU - HIGH, with R4 installed, J1 removed
+  |              6808 CPU - low, with R4 removed, J1 installed.
+  | 
+  | NOTE_2: 6802/6808 CPU - E/CLK: pulses (Alternates high/low)
+  |              6800 CPU - DBE tied to clock
+  | 
+  | NOTE_3: 6802/6808 CPU - XTAL and Reads as low
+  |              6800 CPU - Clock
+  | 
+  | NOTE_4: 6802/6808 CPU - XTAL and reads as low
+  |              6800 CPU - N/C, tied to GND on System 4 boards
+  | 
+  | NOTE_5: 6802/6808 CPU - RESET: HIGH
+  |              6800 CPU - TSC tied to GND on System 4 Boards
+  | 
+  | NOTE_6: Pin 4 should pulse. If not look at the circuit around IC5, IC11, and IC25.
+
+This test ROM disregards the incoming signal on IC1 pin 4 but the game does need the
+pulse here under normal conditions, so at some point you will need to ensure that it is
+working. More can be found on this using the "interrupts" test.
+
+    NOTE: As for the remaining HIGH signals on Axx and Dxx: I'm seeing 3.9 volts on my board
+    for these so if you are also seeing that don't let it worry you here. I'll look into why
+    my A1 and A2 are coming up LOW and update this note in another release.
+
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

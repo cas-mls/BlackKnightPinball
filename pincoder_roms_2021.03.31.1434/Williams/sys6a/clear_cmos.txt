@@ -1,0 +1,36 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+clear_cmos (Williams sys6a)
+
+
+
+PURPOSE
+==============================================================================================
+
+Writes 15 (hex 0F) to all addresses in the 5101 chip (also known as the CMOS chip).
+Essentially a factory reset.
+
+
+
+PROCEDURE
+==============================================================================================
+
+
+    NOTE: Ensure the coin door is open before starting this test.
+
+Power up this rom and wait about two seconds while the 5101 chip is being cleared.
+
+
+
+EXPECTED RESULTS
+==============================================================================================
+
+Both LEDs on the MPU board will light steady after the 5101 chip is cleared.
+
+After you run this ROM and then replace it with the stock System 2 ROM, your game will power
+up as if the batteries have been taken out and re-inserted.
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

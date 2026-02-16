@@ -1,0 +1,72 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+05-displays (Williams sys6a)
+
+
+
+PURPOSE
+==============================================================================================
+
+This ROM displays different numbers in various patterns on the P1-P4, CREDIT, and MATCH
+displays.
+
+    NOTE: This test requires working RAM, and BLANKING signals. Make sure your board passes
+    all of the earlier tests before running this test.
+
+
+
+
+PROCEDURE
+==============================================================================================
+
+Turn on the game and watch the displays as they sequence through various digit tests.
+
+
+
+EXPECTED RESULTS
+==============================================================================================
+
+While the test is running observe the displays and look for irregularities in what is shown.
+
+The first and fourth digits on the Master display do not light, ever. This is normal as they
+are not physically connected and cannot be driven by software.
+
+Some slaves displays (P1-P4) can interfere with other slaves. If you are missing some segments
+on the slaves then disconnect all but one of them. Then try the other slaves individually
+before trying two or more at a time. The same is true if some segments are too bright.
+
+
+
+HOW THE DISPLAYS WORK
+==============================================================================================
+
+Of all the possible digits on all displays (P1-P4, CREDIT, MATCH) only two are ever lit at one
+time, and it takes a brief amount of time for each segment to turn off. When the displays are
+refreshed fast enough they all appear lit simultaneously.
+
+The two digits to be refreshed are determined by the MASTER DISPLAY STROBE OUTPUTS. Player
+displays 1 and 3 are linked together, 2 and 4 are linked together, and likewise for CREDIT and
+MATCH. For example the leftmost digit on player 1 and 3 are refreshed at the same time. Then
+the digit to the right, etc.
+
+The value of the digits to be refreshed are determined by the MASTER DISPLAY BCD OUTPUTS. The
+high 4 bits determine the value of the first digit to display and the low 4 bits determine the
+value of the second digit to display.
+
+So if the STROBE OUTPUTS are a one (in binary) and the BCD OUTPUTS are 37 (in BCD) the
+leftmost digit of the Player 1 display will show a "3" and the leftmost digit of the Player
+3 display will show a "7".  If the value for either digit is "F" then the display is not
+refreshed with anything and should stay unlit.
+
+
+    NOTE: If any of the digits on any of the displays are missing segments (ie a zero looks
+    like the letter U, or a six looks like a five) then there is trouble on the Master Display
+    Board. You can swap cables around between the player displays and the missing segments
+    will follow. In this case look for burnt resistors on the Master Display Board and replace
+    them.
+
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

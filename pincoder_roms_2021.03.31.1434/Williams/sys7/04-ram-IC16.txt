@@ -1,0 +1,59 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+04-ram-IC16 (Williams sys7)
+
+
+
+PURPOSE
+==============================================================================================
+
+This ROM tests the READ and WRITE capabilites of the following chip:
+
+    * Schematic name: IC16
+
+    * Address range: $1000 to $13FF
+
+    * Data bus mask: $0F
+
+
+    NOTE: If this test fails and you are running this test on a system 7 board that has been
+    correctly jumpered to run a system 3-6a board then keep in mind that the results from
+    these .bin files will still be valid however due to the design of the system 7 board this
+    test is unable to determine WHICH ram chip is actually faulty. In this case either replace
+    BOTH ram chips, or jumper the board as a system 7 and run the ram tests using the sys7
+    .bin files in order to correctly determine WHICH ram chip is faulty. You do not need to do
+    any of this if all of the ram tests pass.
+
+
+
+
+PROCEDURE
+==============================================================================================
+
+While this test is running observe the LEDs on the MPU board. Test repeats once for each
+flash.  You can gently wiggle the chip in its place while the test is running. If you get
+different results then you should check the solder connections on the chip socket and/or
+replace the socket.
+
+
+
+EXPECTED RESULTS
+==============================================================================================
+
+Positive: Top LED flashes. You can move on to the next test.
+
+Negative: Bottom LED flashes. One or more memory locations inside the chip is bad.
+
+    NOTE: Due to the the design of the system 7 board the LED segment display will show
+    seemingly nonsensical values for this test regardless of whether the test passes or
+    fails. Ignore the segment display and rely on the LEDs themselves.
+
+
+    NOTE: When looking at the two RAM chips on a System 7 board, RAM1 (IC13) is the chip on
+    the right, and IC16 is on the left.
+
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434

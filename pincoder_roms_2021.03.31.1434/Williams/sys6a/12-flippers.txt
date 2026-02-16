@@ -1,0 +1,195 @@
+Pincoder Diagnostics Inc.  Version 2021.03.31.1434
+
+ROM NAME
+==============================================================================================
+
+12-flippers (Williams sys6a)
+
+
+
+PURPOSE
+==============================================================================================
+
+Typically this test is done on the bench. You CAN run it in-game, and you will need to adhere
+to the following warning:
+
+!!!
+!!!   WARNING: BEFORE running this test in-game you MUST disconnect 2J9, 2J11, 2J12, 2J7, and
+!!!   2J5. FAILURE TO DO SO WILL LIKELY BLOW FUSES, POSSIBLY MELT SOLENOID COILS, AND/OR BLOW
+!!!   ALL OF THE BULBS IN THE LAMP MATRIX.
+!!!
+
+If you are running this test on the bench you will need to connect the following:
+
+    * 1J2 - Logic Power
+
+    * 1J1 - 40 pin MPU board to Driverboard
+
+    * 2J8 - Logic Power (Recommended but not required if your 40 pin is okay)
+
+    * 2J4 - Lamp Power (Only if you want to test the LAMP matrix as well)
+
+The main purpose of this ROM is to test the following driver board components:
+
+    * Test Flipper Relay and Flippers
+
+    * Test Special Switch Inputs at 2J11 and Special Solenoids Drive at 2J9
+
+However, it can also be used to test the following outputs:
+
+    * Test Solenoids Drive 1-9 at 2J11
+
+    * Test Solenoids Drive 9-16 at 2J9
+
+    * Test Lamp Rows Drive at 2J7
+
+    * Test Lamp Columns Drive at 2J5
+
+
+
+
+PROCEDURE
+==============================================================================================
+
+When you boot this ROM, The Top and Bottom LEDs of the MPU board alternate. At the same time,
+all PORT A and B pins of PIA3 (lamps PIA) and PIA4 (solenoids PIA) are toggled on and off in
+syncronization with each other (Port A pins of PIA3 are the inverse of Port B). Additionally,
+the flipper relay is switched on and off.
+
+
+
+RESULTS - Flipper Relay and Flippers
+==============================================================================================
+
+You should be able to hear the flipper relay clicking on and off. If not, verify that the
+following pins are toggling from HIGH to LOW:
+
+    * IC8 pins 1, 2, and 3
+
+If Pins 2 and 3 are toggling but Pin 1 is not, replace IC8.
+
+If Pins 2 and 3 are not toggling refer to the schematics and check:
+
+    * IC7 Pins 5 is HIGH (Blanking signal)
+
+    * IC7 Pins 4, and 6 are toggling
+
+    * IC9 Pins 8, 9, and 10 are toggling
+
+If IC7 Pin 4 is NOT toggling, check IC5 (PIA 4 - CB2). If that is not toggling replace IC5.
+
+Now check the following pins on 2J12:
+
+    * Left Flipper Enable (pin 2) and Right Flipper Enable (pin 1)
+
+They should be toggling to ground in sync with the LEDs.  If not, trace those two signals back
+to the Flipper Relay and check that ground is present on the relay switch input contacts. If
+ground is present there but not at the relay switch output contacts then replace the relay.
+
+    NOTE: If the relay appears to have the ground signal at the outputs when it is closed but
+    you have weak flippers, replace the relay (and/or check the flipper button contacts).
+
+If everything looks good up to this point and you want to check the actual flippers in-game,
+first proceed with the next section (to be sure the Special solenoid switches and drives are
+fine), then complete the final section: TESTING THE FLIPPERS IN-GAME.
+
+!!!
+!!!   WARNING: DO NOT TEST THE ACTUAL FLIPPERS IN-GAME UNTIL YOU COMPLETE THE NEXT SECTION.
+!!!
+
+
+
+
+RESULTS - Special Switch Inputs at 2J11 and Special Solenoids Drive at 2J9
+==============================================================================================
+
+If you hold a ground wire to a Special Switch Pin, you will see a toggling ground signal at
+the corresponding Special Solenoid Drive pin:
+
+  | Special Switch #  2J13 Pin     2J12 Pin  Special Solenoid #
+  | ----------------  --------     --------  ------------------
+  |        3             2      =     3             3
+  |        2             3      =     4             2
+  |        4             4      =     6             4
+  |        1             5      =     7             1
+  |        5             8      =     8             5
+  |        6             9      =     9             6
+
+If you do not see the toggling ground at these 2J12 and 2J13 pins, review the driver board
+schematics and verify that you have a toggling signal on:
+
+    * IC6 Pins 1, 4, 10, and 13
+
+    * IC7 pins 10 and 13.
+
+Also verify that these pins go LOW when you ground the Special Switch pins on 2J13:
+
+    * IC6 Pins 2, 5, 9, 12, and
+
+    * IC7 pins 9 and 12.
+
+Then trace the signals from the outputs of IC6 and IC7 to the inputs of IC8 and IC9, and then
+on to the transistors Q1 through Q12. Replace any of those parts that do not transfer the
+signal from the input to the output.
+
+
+
+
+RESULTS - Solenoid and Lamp Drives
+==============================================================================================
+
+This section is just another way to test Solenoid and Lamp Drive outputs all at the same
+time. If your board has already passed the previous LAMPS and SOLENOIDS test ROMs you can skip
+this section and move on to TESTING THE FLIPPERS IN-GAME.
+
+Verify the following pins on the driver board. They should be toggling from no-connection to
+ground (LOW on logic probe):
+
+    * Solenoids Drive 1-9 (all pins at 2J11 except keyed pin 6)
+
+    * Solenoids Drive 9-16 (all pins at 2J9 except keyed pin 8)
+
+    * Lamp Rows Drive at 2J7 (all pins except keyed pin 7)
+
+These pins should be toggling from no-connection, to +16V (on multimeter):
+
+    * Lamp Columns Drive at 2J5 (all pins except keyed pin 4)
+
+    NOTE: My Gorgar power supply puts out +20.5V on the Lamp Power inputs (cable side of 2J4
+    all pins except 3 and 6) when disconnected. Some schematics have them labelled at +18V or
+    +16V. My 20.5V appears to work fine. With 2J4 connected and the Top LED lit, the constant
+    voltage I see at the Lamp Column connector (2J5) is +14.8V
+
+
+If you do not see the toggling signals at one or more of these pins, review the driver board
+schematics and trace the signal forward from the correspoding PIA pins through to the 2J9 and
+2J11 (Solenoid Drive) and 2J5 and 2J7 (Lamp Drive) pins.
+
+
+    NOTE: If the toggle rate of this test is too fast for your mulitmeter to display a steady
+    voltage at 2J5, press the DIAG button on the MPU board to stop the toggle and have the
+    test remain in the Top LED on state. Press it again to resume toggling. If pressing the
+    DIAG button does not appear to change anything, power down and check the DIAG switch using
+    the continuity mode of your multimeter.
+
+
+
+
+
+TESTING THE FLIPPERS IN-GAME
+==============================================================================================
+
+Now that you have everything working in the previous sections, you can power down and proceed
+to reconnect *ONLY* 2J12 (DO NOT CONNECT the remaining driver board connections: 2J9, 2J11,
+2J7, or 2J5).
+
+You should now be able to power up and test the Flipper circuits through to the
+playfield. When you press and hold one or both flippers they will activate in unison with the
+top LED. If not, Check for the toggling ground signal at the flipper switch contacts and the
+flipper coil. Of course, also check that the F1 fuse is installed and working, and that there
+is 28V DC on the Power Board at 3J3 pins 4 and 5, and on the middle leg of the flipper coil.
+
+While you're here you might as well verify the diodes on the flipper coils. To do that
+unsolder one leg of each diode and use the diode test on your mulitmeter to verify the diode.
+
+Pincoder Diagnostics Inc. Version 2021.03.31.1434
