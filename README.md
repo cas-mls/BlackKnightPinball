@@ -384,7 +384,7 @@
    2. Options
       1. Replace the connector with a regular 40-pin IDE Plug.
          1. ROM Board holes does not fit the 40-pin IDE Plugs.  Need to create a daughter board.  Not easy.
-   
+
       2. Buy new sound board
          1. Found a source without cable and with ROMs. [Sound & Speech Board => System 6/7](http://pinballpcb.com/products/williams-system-6-7-sound-and-speech-combo/)
          2. Price $185.00
@@ -419,6 +419,12 @@
       4. Installed in the machine and the sound board is working.  Still having a $180 sound board arriving in the mail tomorrow.
    5. Bought new Sound Board for the Black Knight for $180.
    6. Now have 2 working Sound/Speech boards.
+
+7. Rebuilt the flippers with new Junction, Springs, EOS contacts.
+
+   1. Issue with installing the EOS contacts on the upper playfield.  Need to remove either the upper playfield, or the flipper plate.  They didn't get replaced.
+   2. Could not remove one of the old solenoid sleeves.  Did not replace it.  Another one was very tight, but replaced.
+
 
 ## Information
 
@@ -512,7 +518,8 @@ ROM Programmer
 1. EEPROMS
    1. 2716 - 2716(25V VPP)
    2. 2732 - 2732(21V VPP)
-2. 
+   
+   
 
 Footnotes:
 
